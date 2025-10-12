@@ -27,4 +27,8 @@ public class EnvioServices {
     public static boolean AddEnvio(Envio envio){
         return gestion.AddEnvio(envio);
     }
+
+    public static List<Envio> getListEnvios (){
+        return gestion.Envios();
+    }
 }

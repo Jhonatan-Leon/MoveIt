@@ -3,6 +3,8 @@ package edu.co.Facade;
 import edu.co.Model.Envio;
 import edu.co.Services.EnvioServices;
 
+import java.util.List;
+
 public class EnvioFacade {
     private static EnvioFacade instance;
 
@@ -27,5 +29,9 @@ public class EnvioFacade {
 
     public static Envio updateEnvio(Envio updateEnvio){
         return EnvioServices.updateEnvio(updateEnvio);
+    }
+
+    public static List<Envio> GetListEnvios(){
+        return  EnvioServices.getListEnvios();
     }
 }

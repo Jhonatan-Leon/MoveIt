@@ -53,4 +53,8 @@ public class GestionEnvios {
         }
         return false;
     }
+
+    public static List<Envio> Envios(){
+        return  new ArrayList<>(listaEnvio);
+    }
 }
