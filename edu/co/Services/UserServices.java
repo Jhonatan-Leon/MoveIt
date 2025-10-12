@@ -1,6 +1,6 @@
 package edu.co.Services;
 import edu.co.Errors.ControllException;
-import edu.co.Model.Geston.GestionUser;
+import edu.co.Model.Gestion.GestionUser;
 import edu.co.Model.User;
 
 import java.util.List;
@@ -22,6 +22,14 @@ public class UserServices {
 
     public static User AddUser(User newUser) throws ControllException.UserCreate {
          try{
+             List<User> findUser = GestionUser.GetUsers();
+
+             for(User s: findUser){
+                 if(s.getId() == newUser.getId() && s.getEmail().equals(newUser.getEmail())){
+                     return null;
+                 }
+             }
+
              return gestion.AddUser(newUser);
          }catch (Exception e){
              throw  new ControllException.UserCreate ("Usuarios no registrado");
@@ -31,7 +39,7 @@ public class UserServices {
          try{
              List<User> users = GestionUser.GetUsers();
              for(User s: users){
-                 if(Objects.equals(usuarios.getId(), s.getId())) {
+                 if(s.getId() == usuarios.getId()) {
                      User updateUser = GestionUser.UpdateUser(usuarios.getId(), usuarios);
                      if(updateUser == null) {
                          return true;
@@ -45,9 +53,9 @@ public class UserServices {
          }
      }
 
-    public static boolean DeleteUser(String nombre) throws ControllException.UserDelete {
+    public static boolean DeleteUser(int Id) throws ControllException.UserDelete {
          try{
-             return GestionUser.DeleteUser(nombre);
+             return GestionUser.DeleteUser(Id);
          }catch (Exception e){
              throw  new ControllException.UserDelete("Error actualizar usuario");
          }

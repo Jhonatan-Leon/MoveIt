@@ -1,6 +1,7 @@
 package edu.co.Controller;
 
 import edu.co.Errors.ControllException;
+import edu.co.Facade.UserFacade;
 import edu.co.Model.User;
 import edu.co.Services.UserServices;
 
@@ -8,10 +9,13 @@ import edu.co.Services.UserServices;
 import java.util.List;
 
 public class UseController {
+    private final UserFacade userFacade = UserFacade.getInstance();
+
+
     public List<User> GetUserAll() {
         List<User> Users = null;
         try {
-           return UserServices.ListUser();
+           return userFacade.getAllUsers();
         } catch (ControllException.UserNotFound e) {
             throw new RuntimeException(e);
         }
@@ -20,7 +24,7 @@ public class UseController {
 
     public User AddUser(User newUser) throws ControllException.UserCreate{
         try{
-            return UserServices.AddUser(newUser);
+            return userFacade.addUser(newUser);
         }catch (Exception e){
             throw  new ControllException.UserCreate("Usuarios no registrado");
         }
@@ -28,15 +32,15 @@ public class UseController {
 
     public boolean UpdateUser(User updateUser) throws ControllException.UserUpdate {
         try{
-            return UserServices.UpdateUser(updateUser);
+            return userFacade.updateUser(updateUser);
         }catch (Exception e){
             throw  new ControllException.UserUpdate("Error actualizar usuario");
         }
     }
 
-    public boolean DeleteUser(String Id){
+    public boolean DeleteUser(int Id){
         try{
-            return UserServices.DeleteUser(Id);
+            return userFacade.deleteUser(Id);
         }catch (Exception e){
             throw new RuntimeException();
         }
@@ -44,7 +48,7 @@ public class UseController {
 
     public User GetUser(String name) throws ControllException.UserNotFound{
         try{
-            return UserServices.GetUser(name);
+            return userFacade.getUser(name);
         }catch (Exception e){
             throw new ControllException.UserNotFound("Usuario no encontrado");
         }

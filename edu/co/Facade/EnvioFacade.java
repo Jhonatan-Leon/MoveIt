@@ -1,0 +1,31 @@
+package edu.co.Facade;
+
+import edu.co.Model.Envio;
+import edu.co.Services.EnvioServices;
+
+public class EnvioFacade {
+    private static EnvioFacade instance;
+
+    public static EnvioFacade getInstance(){
+        if(instance == null){
+            instance = new EnvioFacade();
+        }
+        return instance;
+    }
+
+    public static Envio getEnvio(int IdEnvio){
+        return EnvioServices.getEnvio(IdEnvio);
+    }
+
+    public static boolean AddEnvio(Envio envio){
+        return EnvioServices.AddEnvio(envio);
+    }
+
+    public static boolean DeleteEnvio(int IdEnvio){
+        return EnvioServices.DeleteEnvio(IdEnvio);
+    }
+
+    public static Envio updateEnvio(Envio updateEnvio){
+        return EnvioServices.updateEnvio(updateEnvio);
+    }
+}

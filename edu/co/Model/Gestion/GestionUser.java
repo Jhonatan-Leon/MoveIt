@@ -1,4 +1,4 @@
-package edu.co.Model.Geston;
+package edu.co.Model.Gestion;
 
 import edu.co.Model.User;
 
@@ -25,9 +25,9 @@ public class GestionUser {
         return new ArrayList<>(listUser);
     }
 
-    public static User UpdateUser(String Id, User user) {
+    public static User UpdateUser(int Id, User user) {
         for(User u : listUser){
-            if(u.getEmail().equals(Id)){
+            if(u.getId() == Id){
                 u.setNombreCompleto(user.getNombreCompleto());
                 u.setEmail(user.getEmail());
                 u.setTelefono(user.getTelefono());
@@ -48,9 +48,9 @@ public class GestionUser {
         return null;
     }
 
-    public static boolean DeleteUser(String Id){
+    public static boolean DeleteUser(int Id){
         for(User u : listUser){
-            if(u.getEmail().equals(Id)){
+            if(u.getId() == (Id)){
                 listUser.remove(u);
                 return  true;
             }

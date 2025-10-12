@@ -11,7 +11,7 @@ public class Envio {
     private ArrayList<Package> listpaquete;
     private TipoEstado estado;
     private double Costo;
-    private Date fechaCreación;
+    private Date fechaCreacion;
     private Date fechaEstimada;
 
     public Envio(EnvioBuilder builder){
@@ -20,7 +20,7 @@ public class Envio {
         this.listpaquete = builder.listpaquete;
         this.estado = builder.estado;
         this.Costo = builder.Costo;
-        this.fechaCreación = builder.fechaCreación;
+        this.fechaCreacion = builder.fechaCreación;
         this.fechaEstimada = builder.fechaEstimada;
     }
 
@@ -65,11 +65,11 @@ public class Envio {
     }
 
     public Date getFechaCreación() {
-        return fechaCreación;
+        return fechaCreacion;
     }
 
     public void setFechaCreación(Date fechaCreación) {
-        this.fechaCreación = fechaCreación;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Date getFechaEstimada() {

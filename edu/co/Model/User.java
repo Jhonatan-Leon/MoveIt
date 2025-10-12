@@ -23,7 +23,7 @@ public class User {
         this.MetodoPagoFavorito = builder.MetodoPagoFavorito;
     }
 
-    public String getId() {
+    public int getId() {
         return Id;
     }
 
