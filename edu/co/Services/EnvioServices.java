@@ -12,10 +12,6 @@ public class EnvioServices {
         return gestion.getEnvio(IdEnvio);
     }
 
-    public static List<Envio> CreateEnvioUser(int IdUser, Envio envio){
-
-    }
-
     public static boolean DeleteEnvio(int IdEnvio){
         return  gestion.DeleteEnvio(IdEnvio);
     }
