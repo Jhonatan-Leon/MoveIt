@@ -16,22 +16,27 @@ public class EnvioFacade {
     }
 
     public static Envio getEnvio(int IdEnvio){
+
         return EnvioServices.getEnvio(IdEnvio);
     }
 
     public static boolean AddEnvio(Envio envio){
+
         return EnvioServices.AddEnvio(envio);
     }
 
     public static boolean DeleteEnvio(int IdEnvio){
+
         return EnvioServices.DeleteEnvio(IdEnvio);
     }
 
     public static Envio updateEnvio(Envio updateEnvio){
+
         return EnvioServices.updateEnvio(updateEnvio);
     }
 
     public static List<Envio> GetListEnvios(){
+
         return  EnvioServices.getListEnvios();
     }
 }
