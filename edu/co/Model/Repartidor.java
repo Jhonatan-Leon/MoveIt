@@ -4,19 +4,39 @@ public class Repartidor {
     private String Id;
     private String NombreCompeto;
     private TipoDocumento tipoDocumento;
+    private String email;
+    private String password;
     private String NumeroDocumento;
     private String ZonaCobertura;
 
-    public Repartidor(String Id, String NombreCompleto, TipoDocumento tipoDocumento, String NumeroDocumento, String ZonaCobertura){
+    public Repartidor(String Id, String NombreCompleto, TipoDocumento tipoDocumento, String email, String password, String NumeroDocumento, String ZonaCobertura){
         this.Id = Id;
         this.NombreCompeto = NombreCompeto;
         this.tipoDocumento = tipoDocumento;
+        this.email = email;
+        this.password = password;
         this.NumeroDocumento = NumeroDocumento;
         this.ZonaCobertura = ZonaCobertura;
     }
 
     public String getId() {
         return Id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setId(String id) {
