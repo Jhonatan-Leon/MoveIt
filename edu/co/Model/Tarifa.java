@@ -7,7 +7,7 @@ public class Tarifa {
     private TipoPrioridad Prioridad;
     private float RecargaAdicional;
 
-    public Tarifa(float Distancia, float peso, float Volumen, String Prioridad, float RecargaAdicional) {
+    public Tarifa(float Distancia, float peso, float Volumen, TipoPrioridad Prioridad, float RecargaAdicional) {
         this.Distancia = Distancia;
         this.peso = peso;
         this.Volumen = Volumen;
@@ -39,11 +39,11 @@ public class Tarifa {
         Volumen = volumen;
     }
 
-    public String getPrioridad() {
+    public TipoPrioridad getPrioridad() {
         return Prioridad;
     }
 
-    public void setPrioridad(String prioridad) {
+    public void setPrioridad(TipoPrioridad prioridad) {
         Prioridad = prioridad;
     }
 
