@@ -1,42 +1,32 @@
+
 package edu.co.Model;
 
 import edu.co.Model.ClassBuilder.UserBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
-    private int Id;
-    private String NombreCompleto;
+    private int id;
+    private String nombreCompleto;
     private String email;
+    private String password;
     private String telefono;
     private ArrayList<Direccion> listDireccion;
     private ArrayList<Envio> listEnvio;
-    private String MetodoPagoFavorito;
+    private String metodoPagoFavorito;
+    private boolean estado;
 
     public User(UserBuilder builder) {
-        this.Id = builder.Id;
-        this.NombreCompleto = builder.NombreCompleto;
+        this.id = builder.Id;
+        this.nombreCompleto = builder.NombreCompleto;
         this.email = builder.email;
+        this.password = builder.password;
         this.telefono = builder.telefono;
         this.listDireccion = builder.listDireccion;
         this.listEnvio = builder.listEnvio;
-        this.MetodoPagoFavorito = builder.MetodoPagoFavorito;
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public String getNombreCompleto() {
-        return NombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        NombreCompleto = nombreCompleto;
+        this.metodoPagoFavorito = builder.MetodoPagoFavorito;
+        this.estado = builder.estado;
     }
 
     public String getEmail() {
@@ -47,6 +37,62 @@ public class User {
         this.email = email;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ArrayList<Direccion> getListDireccion() {
+        return listDireccion;
+    }
+
+    public void setListDireccion(ArrayList<Direccion> listDireccion) {
+        this.listDireccion = listDireccion;
+    }
+
+    public ArrayList<Envio> getListEnvio() {
+        return listEnvio;
+    }
+
+    public void setListEnvio(ArrayList<Envio> listEnvio) {
+        this.listEnvio = listEnvio;
+    }
+
+    public String getMetodoPagoFavorito() {
+        return metodoPagoFavorito;
+    }
+
+    public void setMetodoPagoFavorito(String metodoPagoFavorito) {
+        this.metodoPagoFavorito = metodoPagoFavorito;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -55,27 +101,4 @@ public class User {
         this.telefono = telefono;
     }
 
-    public ArrayList<Direccion> getDireccion() {
-        return listDireccion;
-    }
-
-    public void setlistDireccion(ArrayList<Direccion> listDireccion) {
-        this.listDireccion = listDireccion;
-    }
-
-    public ArrayList<Envio> getEnvio(){
-        return  listEnvio;
-    }
-
-    public void setlistEnvio(ArrayList<Envio> listEnvio){
-        this.listEnvio = listEnvio;
-    }
-
-    public String getMetodoPagoFavorito() {
-        return MetodoPagoFavorito;
-    }
-
-    public void setMetodoPagoFavorito(String metodoPagoFavorito) {
-        MetodoPagoFavorito = metodoPagoFavorito;
-    }
 }
