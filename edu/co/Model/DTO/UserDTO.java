@@ -79,7 +79,7 @@ public class UserDTO {
 
     @Override
     public String toString(){
-        return Id + "(" +NombreCompleto+ ") " +  "("+email+")"+ "("+password+")" +"("+telefono+")"+"("+direccion+")"+"("+tipoDireccion+")"+"("+estado+")";
+        return Id + "(" +NombreCompleto+ ") " +  "("+email+")"+ "("+password+")" +"("+telefono+")"+"("+direccion+")"+"("+estado+")";
     }
 
 }
