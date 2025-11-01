@@ -9,54 +9,75 @@ public class GestionUser {
     private static final List<User> listUser = new ArrayList<>();
     private static GestionUser instance;
 
-    public static GestionUser getInstance(){
-        if(instance == null){
+    private GestionUser() {
+    }
+    public static GestionUser getInstance() {
+        if (instance == null) {
             instance = new GestionUser();
         }
         return instance;
     }
 
-    public User AddUser(User usuario){
+    // Métodos CRUD
+    public User addUser(User usuario) {
+        if (usuario == null) {
+            return null;
+        }
         listUser.add(usuario);
-        return  usuario;
+        return usuario;
     }
 
-    public static List<User> GetUsers(){
+    public List<User> getUsers() {
         return new ArrayList<>(listUser);
     }
 
-    public static User UpdateUser(int Id, User user) {
-        for(User u : listUser){
-            if(u.getId() == Id){
+    public User getUser(String email) {
+        if (email == null) {
+            return null;
+        }
+        for (User u : listUser) {
+            if (u.getEmail().equals(email)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public User getUserById(int id) {
+        for (User u : listUser) {
+            if (u.getId() == id) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public User updateUser(int id, User user) {
+        if (user == null) {
+            return null;
+        }
+        for (User u : listUser) {
+            if (u.getId() == id) {
                 u.setNombreCompleto(user.getNombreCompleto());
                 u.setEmail(user.getEmail());
                 u.setTelefono(user.getTelefono());
-                u.setlistDireccion(user.getDireccion());
-                return u;
-            }
-        }
-
-        return null;
-    }
-
-    public static User GetUser(String Id){
-        for(User u : listUser){
-            if(u.getEmail().equals(Id)){
+                u.setListDireccion(user.getListDireccion());
+                u.setListEnvio(user.getListEnvio());
+                u.setMetodoPagoFavorito(user.getMetodoPagoFavorito());
+                u.setEstado(user.isEstado());
                 return u;
             }
         }
         return null;
     }
 
-    public static boolean DeleteUser(int Id){
-        for(User u : listUser){
-            if(u.getId() == (Id)){
+    public boolean deleteUser(int id) {
+        for (User u : listUser) {
+            if (u.getId() == id) {
                 listUser.remove(u);
-                return  true;
+                return true;
             }
         }
         return false;
     }
-
-
 }
