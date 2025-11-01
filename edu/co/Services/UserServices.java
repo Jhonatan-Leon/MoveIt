@@ -1,71 +1,112 @@
 package edu.co.Services;
+
 import edu.co.Errors.ControllException;
 import edu.co.Model.Gestion.GestionUser;
 import edu.co.Model.User;
 
 import java.util.List;
-import java.util.Objects;
 
 public class UserServices {
-
-    //Instanciar clase para gestionar usuarios
     private static final GestionUser gestion = GestionUser.getInstance();
 
-    //Logica para Usuarios;
-    public static List<User> ListUser() throws ControllException.UserNotFound {
-         try {
-             return GestionUser.GetUsers();
-         }catch(Exception e){
-             throw new ControllException.UserNotFound("Usuarios no encontrados");
-         }
+    private UserServices() {
     }
+    public static List<User> listUsers() throws ControllException.UserNotFound {
+        try {
+            List<User> users = gestion.getUsers();
+            if (users.isEmpty()) {
+                throw new ControllException.UserNotFound("No hay usuarios registrados");
+            }
+            return users;
+        } catch (Exception e) {
+            throw new ControllException.UserNotFound("Error al obtener usuarios: " + e.getMessage());
+        }
+    }
+    public static User getUser(String email) throws ControllException.UserNotFound {
+        try {
+            if (email == null || email.trim().isEmpty()) {
+                throw new ControllException.UserNotFound("El email no puede estar vacío");
+            }
 
-    public static User AddUser(User newUser) throws ControllException.UserCreate {
-         try{
-             List<User> findUser = GestionUser.GetUsers();
+            User user = gestion.getUser(email);
+            if (user == null) {
+                throw new ControllException.UserNotFound("Usuario no encontrado con email: " + email);
+            }
+            return user;
+        } catch (ControllException.UserNotFound e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ControllException.UserNotFound("Error al buscar usuario: " + e.getMessage());
+        }
+    }
+    public static User getUserById(int id) throws ControllException.UserNotFound {
+        try {
+            User user = gestion.getUserById(id);
+            if (user == null) {
+                throw new ControllException.UserNotFound("Usuario no encontrado con ID: " + id);
+            }
+            return user;
+        } catch (ControllException.UserNotFound e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ControllException.UserNotFound("Error al buscar usuario: " + e.getMessage());
+        }
+    }
+    public static User addUser(User newUser) throws ControllException.UserCreate {
+        try {
+            if (newUser == null) {
+                throw new ControllException.UserCreate("El usuario no puede ser nulo");
+            }
 
-             for(User s: findUser){
-                 if(s.getId() == newUser.getId() && s.getEmail().equals(newUser.getEmail())){
-                     return null;
-                 }
-             }
+            // Validar si el usuario ya existe
+            User existingUserById = gestion.getUserById(newUser.getId());
+            if (existingUserById != null) {
+                throw new ControllException.UserCreate("Ya existe un usuario con el ID: " + newUser.getId());
+            }
 
-             return gestion.AddUser(newUser);
-         }catch (Exception e){
-             throw  new ControllException.UserCreate ("Usuarios no registrado");
-         }
-     }
-     public static boolean UpdateUser(User usuarios) throws ControllException.UserUpdate {
-         try{
-             List<User> users = GestionUser.GetUsers();
-             for(User s: users){
-                 if(s.getId() == usuarios.getId()) {
-                     User updateUser = GestionUser.UpdateUser(usuarios.getId(), usuarios);
-                     if(updateUser == null) {
-                         return true;
-                     }
-                 }
-             }
+            User existingUserByEmail = gestion.getUser(newUser.getEmail());
+            if (existingUserByEmail != null) {
+                throw new ControllException.UserCreate("Ya existe un usuario con el email: " + newUser.getEmail());
+            }
 
-             return false;
-         }catch (Exception e){
-             throw new ControllException.UserUpdate("Error actualizar usuario");
-         }
-     }
+            return gestion.addUser(newUser);
+        } catch (ControllException.UserCreate e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ControllException.UserCreate("Error al registrar usuario: " + e.getMessage());
+        }
+    }
+    public static boolean updateUser(User user) throws ControllException.UserUpdate {
+        try {
+            if (user == null) {
+                throw new ControllException.UserUpdate("El usuario no puede ser nulo");
+            }
 
-    public static boolean DeleteUser(int Id) throws ControllException.UserDelete {
-         try{
-             return GestionUser.DeleteUser(Id);
-         }catch (Exception e){
-             throw  new ControllException.UserDelete("Error actualizar usuario");
-         }
-     }
+            User existingUser = gestion.getUserById(user.getId());
+            if (existingUser == null) {
+                throw new ControllException.UserUpdate("Usuario no encontrado con ID: " + user.getId());
+            }
 
-    public static User GetUser(String nombre) throws ControllException.UserNotFound {
-         try{
-             return GestionUser.GetUser(nombre);
-         }catch (Exception e){
-             throw new ControllException.UserNotFound("Usuario no encontrado");
-         }
-     }
+            User updatedUser = gestion.updateUser(user.getId(), user);
+            return updatedUser != null;
+        } catch (ControllException.UserUpdate e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ControllException.UserUpdate("Error al actualizar usuario: " + e.getMessage());
+        }
+    }
+    public static boolean deleteUser(int id) throws ControllException.UserDelete {
+        try {
+            User existingUser = gestion.getUserById(id);
+            if (existingUser == null) {
+                throw new ControllException.UserDelete("Usuario no encontrado con ID: " + id);
+            }
+
+            return gestion.deleteUser(id);
+        } catch (ControllException.UserDelete e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ControllException.UserDelete("Error al eliminar usuario: " + e.getMessage());
+        }
+    }
 }
