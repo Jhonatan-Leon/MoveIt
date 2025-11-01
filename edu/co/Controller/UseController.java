@@ -3,7 +3,8 @@ package edu.co.Controller;
 import edu.co.Errors.ControllException;
 import edu.co.Facade.UserFacade;
 import edu.co.Model.User;
-import edu.co.Services.UserServices;
+import edu.co.Model.DTO.UserDTO;
+
 
 
 import java.util.List;
@@ -13,9 +14,8 @@ public class UseController {
 
 
     public List<User> GetUserAll() {
-        List<User> Users = null;
         try {
-           return userFacade.getAllUsers();
+            return userFacade.getAllUsers();
         } catch (ControllException.UserNotFound e) {
             throw new RuntimeException(e);
         }
