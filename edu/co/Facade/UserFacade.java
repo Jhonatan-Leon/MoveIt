@@ -9,32 +9,31 @@ import java.util.List;
 public class UserFacade {
     private static UserFacade instance;
 
-    public static UserFacade getInstance(){
-        if(instance == null){
+    private UserFacade() {
+    }
+    public static UserFacade getInstance() {
+        if (instance == null) {
             instance = new UserFacade();
         }
         return instance;
     }
 
-    public List<User> getAllUsers() throws ControllException.UserNotFound{
-        return UserServices.ListUser();
+    public List<User> getAllUsers() throws ControllException.UserNotFound {
+        return UserServices.listUsers();
     }
-
-    public User getUser(String name) throws ControllException.UserNotFound{
-        return UserServices.GetUser(name);
+    public User getUser(String email) throws ControllException.UserNotFound {
+        return UserServices.getUser(email);
     }
-
-    public User addUser(User newUser) throws ControllException.UserCreate{
-        return UserServices.AddUser(newUser);
+    public User getUserById(int id) throws ControllException.UserNotFound {
+        return UserServices.getUserById(id);
     }
-
-    public boolean updateUser(User updateUser) throws ControllException.UserUpdate{
-        return UserServices.UpdateUser(updateUser);
+    public User addUser(User newUser) throws ControllException.UserCreate {
+        return UserServices.addUser(newUser);
     }
-
-    public boolean deleteUser(int Id) throws ControllException.UserDelete{
-        return  UserServices.DeleteUser(Id);
+    public boolean updateUser(User updateUser) throws ControllException.UserUpdate {
+        return UserServices.updateUser(updateUser);
     }
-
-
+    public boolean deleteUser(int id) throws ControllException.UserDelete {
+        return UserServices.deleteUser(id);
+    }
 }
