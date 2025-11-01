@@ -8,8 +8,9 @@ public class Repartidor {
     private String password;
     private String NumeroDocumento;
     private String ZonaCobertura;
+    private boolean estado;
 
-    public Repartidor(String Id, String NombreCompleto, TipoDocumento tipoDocumento, String email, String password, String NumeroDocumento, String ZonaCobertura){
+    public Repartidor(String Id, String NombreCompleto, TipoDocumento tipoDocumento, String email, String password, String NumeroDocumento, String ZonaCobertura, boolean estado){
         this.Id = Id;
         this.NombreCompeto = NombreCompeto;
         this.tipoDocumento = tipoDocumento;
@@ -17,6 +18,7 @@ public class Repartidor {
         this.password = password;
         this.NumeroDocumento = NumeroDocumento;
         this.ZonaCobertura = ZonaCobertura;
+        this.estado = estado;
     }
 
     public String getId() {
@@ -70,6 +72,10 @@ public class Repartidor {
     public String getZonaCobertura() {
         return ZonaCobertura;
     }
+
+    public boolean isEstado() {return estado;}
+
+    public void setEstado(boolean estado) {this.estado = estado;}
 
     public void setZonaCobertura(String zonaCobertura) {
         ZonaCobertura = zonaCobertura;
