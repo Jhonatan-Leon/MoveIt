@@ -9,17 +9,22 @@ public class UserBuilder {
     public int Id;
     public String NombreCompleto;
     public String email;
+    public String password;
     public String telefono;
     public ArrayList<Direccion> listDireccion;
     public ArrayList<Envio> listEnvio;
     public String MetodoPagoFavorito = "";
+    public boolean estado = true;
 
-    public UserBuilder(int Id, String NombreCompleto, String email, String telefono) {
+    public UserBuilder(int Id, String NombreCompleto, String email, String Password, String telefono, boolean estado) {
         this.Id = Id;
         this.NombreCompleto = NombreCompleto;
         this.email = email;
+        this.password = Password;
         this.telefono = telefono;
         this.listEnvio = new ArrayList<>();
+        this.estado = estado;
+        this.listDireccion = new ArrayList<>();
     }
 
     public UserBuilder withMetodoPagoFavorito(String metodo){
