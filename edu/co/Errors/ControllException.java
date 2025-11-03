@@ -36,4 +36,27 @@ public class ControllException {
         }
     }
 
+    public static class PackageNotFound extends AplicationException {
+        public PackageNotFound(String message, Throwable cause){
+            super(message);
+        }
+    }
+
+    public static class PackageUpdate extends AplicationException {
+        public PackageUpdate(String message){
+            super(message);
+        }
+    }
+
+    public static class PackageDelete extends AplicationException {
+        public PackageDelete(String message){
+            super(message);
+        }
+    }
+    public static class PackageCreate extends AplicationException {
+        public PackageCreate(String message){
+            super(message);
+        }
+    }
+
 }
