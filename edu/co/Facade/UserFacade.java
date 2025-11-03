@@ -2,8 +2,10 @@ package edu.co.Facade;
 
 import edu.co.Errors.ControllException;
 import edu.co.Model.DTO.UserDTO;
+import edu.co.Model.DTO.UserLoginDTO;
 import edu.co.Model.User;
 import edu.co.Services.UserServices;
+import edu.co.Utils.LoginDTO;
 
 import java.util.List;
 
@@ -36,5 +38,9 @@ public class UserFacade {
     }
     public boolean deleteUser(int id) throws ControllException.UserDelete {
         return UserServices.deleteUser(id);
+    }
+
+    public User login(UserLoginDTO login) throws ControllException.ErrorServer {
+        return UserServices.login(login);
     }
 }
