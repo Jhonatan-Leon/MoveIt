@@ -2,6 +2,7 @@ package edu.co.Controller;
 
 import edu.co.Errors.ControllException;
 import edu.co.Facade.UserFacade;
+import edu.co.Model.DTO.UserLoginDTO;
 import edu.co.Model.User;
 import edu.co.Model.DTO.UserDTO;
 
@@ -61,5 +62,13 @@ public class UseController {
             throw new ControllException.UserNotFound("Usuario no encontrado");
         }
 
+    }
+
+    public User login(UserLoginDTO login) throws ControllException.ErrorServer {
+        try {
+            return userFacade.login(login);
+        }catch (Exception e){
+            throw new ControllException.ErrorServer("Error en el servidor"+ e.getMessage());
+        }
     }
 }
