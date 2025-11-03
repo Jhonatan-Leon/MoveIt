@@ -4,7 +4,6 @@ package edu.co.Model;
 import edu.co.Model.ClassBuilder.UserBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class User {
     private int id;
