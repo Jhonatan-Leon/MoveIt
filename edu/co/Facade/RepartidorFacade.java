@@ -31,4 +31,8 @@ public class RepartidorFacade {
         return RepartidorServices.AddRepartidor(newUser);
     }
 
+    public boolean deleteRepartidor(String Id) {
+        return RepartidorServices.deleteRepartidor(Id);
+    }
+
 }
