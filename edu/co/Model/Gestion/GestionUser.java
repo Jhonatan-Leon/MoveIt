@@ -18,11 +18,7 @@ public class GestionUser {
         return instance;
     }
 
-    // Métodos CRUD
     public User addUser(User usuario) {
-        if (usuario == null) {
-            return null;
-        }
         listUser.add(usuario);
         return usuario;
     }
@@ -32,9 +28,6 @@ public class GestionUser {
     }
 
     public User getUser(String email) {
-        if (email == null) {
-            return null;
-        }
         for (User u : listUser) {
             if (u.getEmail().equals(email)) {
                 return u;
@@ -53,9 +46,6 @@ public class GestionUser {
     }
 
     public User updateUser(int id, User user) {
-        if (user == null) {
-            return null;
-        }
         for (User u : listUser) {
             if (u.getId() == id) {
                 u.setNombreCompleto(user.getNombreCompleto());
