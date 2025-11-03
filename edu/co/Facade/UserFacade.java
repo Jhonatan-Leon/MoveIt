@@ -1,6 +1,7 @@
 package edu.co.Facade;
 
 import edu.co.Errors.ControllException;
+import edu.co.Model.DTO.UserDTO;
 import edu.co.Model.User;
 import edu.co.Services.UserServices;
 
