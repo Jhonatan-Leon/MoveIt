@@ -53,4 +53,13 @@ public class UseController {
             throw new ControllException.UserNotFound("Usuario no encontrado");
         }
     }
+
+    public User GetUserById(int id) throws ControllException.UserNotFound{
+        try{
+            return userFacade.getUserById(id);
+        }catch (Exception e){
+            throw new ControllException.UserNotFound("Usuario no encontrado");
+        }
+
+    }
 }
