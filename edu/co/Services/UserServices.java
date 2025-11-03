@@ -1,9 +1,10 @@
 package edu.co.Services;
 
 import edu.co.Errors.ControllException;
-import edu.co.Model.DTO.UserDTO;
+import edu.co.Model.DTO.UserLoginDTO;
 import edu.co.Model.Gestion.GestionUser;
 import edu.co.Model.User;
+import edu.co.Utils.LoginDTO;
 
 import java.util.List;
 
@@ -59,7 +60,6 @@ public class UserServices {
                 throw new ControllException.UserCreate("El usuario no puede ser nulo");
             }
 
-            // Validar si el usuario ya existe
             User existingUserById = gestion.getUserById(newUser.getId());
             if (existingUserById != null) {
                 throw new ControllException.UserCreate("Ya existe un usuario con el ID: " + newUser.getId());
@@ -108,6 +108,20 @@ public class UserServices {
             throw e;
         } catch (Exception e) {
             throw new ControllException.UserDelete("Error al eliminar usuario: " + e.getMessage());
+        }
+    }
+
+    public static User login(UserLoginDTO userLoginDTO) throws ControllException.ErrorServer {
+        try {
+            if(userLoginDTO == null) throw new ControllException.UserNotFound("Usuario no encontrado");
+
+            User user = gestion.getUser(userLoginDTO.getEmail());
+            if(user == null) throw new ControllException.UserNotFound("Usuario no encontrado");
+
+            if(user.getPassword().equals(userLoginDTO.getPassword())) return user;
+            else throw new ControllException.UserNotFound("Error en los datos proporcionados");
+        }catch (Exception e){
+            throw new ControllException.ErrorServer("Usuario no encontrado");
         }
     }
 }
