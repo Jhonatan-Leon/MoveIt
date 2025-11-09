@@ -39,7 +39,8 @@ public class UserFacade {
         return UserServices.deleteUser(id);
     }
 
-    public User login(UserLoginDTO login) throws ControllException.ErrorServer {
+    public User login(UserLoginDTO login)
+            throws ControllException.UserNotFound, ControllException.ErrorServer {
         return UserServices.login(login);
     }
 }

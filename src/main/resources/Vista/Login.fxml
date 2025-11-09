@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="161.0" layoutY="534.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="47.0" prefWidth="373.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Crear nueva cuenta" textFill="WHITE">
+      <Button layoutX="161.0" layoutY="534.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="373.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Crear nueva cuenta" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -48,5 +48,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Text fx:id="labelError" fill="RED" layoutX="218.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error al Iniciar sesion" textAlignment="CENTER" visible="false" wrappingWidth="259.03125">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

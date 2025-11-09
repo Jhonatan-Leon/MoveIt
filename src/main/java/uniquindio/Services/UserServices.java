@@ -114,28 +114,37 @@ public class UserServices {
         }
     }
 
-    public static User login(UserLoginDTO userLoginDTO) throws ControllException.ErrorServer {
+    public static User login(UserLoginDTO userLoginDTO) throws ControllException.UserNotFound ,ControllException.ErrorServer {
         try {
+
             if (userLoginDTO == null)
                 throw new ControllException.UserNotFound("Datos inválidos");
 
             // 1. Buscar en Clientes
             Client client = gestion.getUserById(userLoginDTO.getId());
-            if (client != null && client.getPassword().equals(userLoginDTO.getPassword())) {
-                return client;
+            if (client != null) {
+                if (client.getPassword().equals(userLoginDTO.getPassword())) {
+                    return client;
+                }
+                throw new ControllException.UserNotFound("Contraseña incorrecta");
             }
 
             // 2. Buscar en Repartidores
             Repartidor repartidor = gestionRepartidor.getRepartidor(userLoginDTO.getId());
-            if (repartidor != null && repartidor.getPassword().equals(userLoginDTO.getPassword())) {
-                return repartidor;
+            if (repartidor != null) {
+                if (repartidor.getPassword().equals(userLoginDTO.getPassword())) {
+                    return repartidor;
+                }
+                throw new ControllException.UserNotFound("Contraseña incorrecta");
             }
 
-            // 3. Buscar en Admins PENDIENTE DE HACER
+            // 3. Buscar en Admin PENDIENTE
 
-            // Si nada hace match
-            throw new ControllException.UserNotFound("Usuario o contraseña incorrectos");
+            // Si no se encontró en ninguna lista:
+            throw new ControllException.UserNotFound("Usuario no encontrado");
 
+        } catch (ControllException.UserNotFound e) {
+            throw e; 
         } catch (Exception e) {
             throw new ControllException.ErrorServer("Error en el servidor");
         }
