@@ -2,13 +2,17 @@ package uniquindio.Services;
 
 import uniquindio.Errors.ControllException;
 import uniquindio.Model.DTO.UserLoginDTO;
+import uniquindio.Model.Gestion.GestionRepartidor;
 import uniquindio.Model.Gestion.GestionUser;
 import uniquindio.Model.Client;
+import uniquindio.Model.Repartidor;
+import uniquindio.Model.User;
 
 import java.util.List;
 
 public class UserServices {
     private static final GestionUser gestion = GestionUser.getInstance();
+    private static final GestionRepartidor gestionRepartidor = GestionRepartidor.getInstance();
 
     private UserServices() {
     }
@@ -110,17 +114,30 @@ public class UserServices {
         }
     }
 
-    public static Client login(UserLoginDTO userLoginDTO) throws ControllException.ErrorServer {
+    public static User login(UserLoginDTO userLoginDTO) throws ControllException.ErrorServer {
         try {
-            if(userLoginDTO == null) throw new ControllException.UserNotFound("Usuario no encontrado");
+            if (userLoginDTO == null)
+                throw new ControllException.UserNotFound("Datos inválidos");
 
-            Client client = gestion.getUser(userLoginDTO.getEmail());
-            if(client == null) throw new ControllException.UserNotFound("Usuario no encontrado");
+            // 1. Buscar en Clientes
+            Client client = gestion.getUserById(userLoginDTO.getId());
+            if (client != null && client.getPassword().equals(userLoginDTO.getPassword())) {
+                return client;
+            }
 
-            if(client.getPassword().equals(userLoginDTO.getPassword())) return client;
-            else throw new ControllException.UserNotFound("Error en los datos proporcionados");
-        }catch (Exception e){
-            throw new ControllException.ErrorServer("Usuario no encontrado");
+            // 2. Buscar en Repartidores
+            Repartidor repartidor = gestionRepartidor.getRepartidor(userLoginDTO.getId());
+            if (repartidor != null && repartidor.getPassword().equals(userLoginDTO.getPassword())) {
+                return repartidor;
+            }
+
+            // 3. Buscar en Admins PENDIENTE DE HACER
+
+            // Si nada hace match
+            throw new ControllException.UserNotFound("Usuario o contraseña incorrectos");
+
+        } catch (Exception e) {
+            throw new ControllException.ErrorServer("Error en el servidor");
         }
     }
 }

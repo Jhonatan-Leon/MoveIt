@@ -4,6 +4,7 @@ import uniquindio.Errors.ControllException;
 import uniquindio.Facade.UserFacade;
 import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.Client;
+import uniquindio.Model.User;
 
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class UseController {
 
     }
 
-    public Client login(UserLoginDTO login) throws ControllException.ErrorServer {
+    public User login(UserLoginDTO login) throws ControllException.ErrorServer {
         try {
             return userFacade.login(login);
         }catch (Exception e){

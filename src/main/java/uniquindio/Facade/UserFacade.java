@@ -3,6 +3,7 @@ package uniquindio.Facade;
 import uniquindio.Errors.ControllException;
 import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.Client;
+import uniquindio.Model.User;
 import uniquindio.Services.UserServices;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class UserFacade {
         return UserServices.deleteUser(id);
     }
 
-    public Client login(UserLoginDTO login) throws ControllException.ErrorServer {
+    public User login(UserLoginDTO login) throws ControllException.ErrorServer {
         return UserServices.login(login);
     }
 }
