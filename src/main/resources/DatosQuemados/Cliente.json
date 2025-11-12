@@ -1,0 +1,64 @@
+[
+    {
+      "id": 101,
+      "nombreCompleto": "Ana Torres López",
+      "email": "ana.torres@mail.com",
+      "password": "hashed_password_1",
+      "telefono": "555-1234",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1000123456",
+      "estado": "Activo",
+      "metodoPagoFavorito": "Tarjeta de Crédito",
+      "listDireccion": [
+        {
+          "calle": "Carrera 10",
+          "numero": "25A-45",
+          "ciudad": "Bogotá",
+          "pais": "Colombia",
+          "alias": "Casa Principal"
+        },
+        {
+          "calle": "Avenida 7",
+          "numero": "15-10",
+          "ciudad": "Medellín",
+          "pais": "Colombia",
+          "alias": "Apartamento de Verano"
+        }
+      ],
+      "listEnvio": [
+        {
+          "idEnvio": "E001",
+          "fechaPedido": "2025-11-08T10:30:00Z",
+          "estado": "Entregado",
+          "costo": 15.50
+        },
+        {
+          "idEnvio": "E002",
+          "fechaPedido": "2025-11-10T15:00:00Z",
+          "estado": "En Reparto",
+          "costo": 12.00
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "nombreCompleto": "Carlos García Ruiz",
+      "email": "carlos.garcia@mail.com",
+      "password": "hashed_password_2",
+      "telefono": "555-5678",
+      "tipoDocumento": "CE",
+      "numeroDocumento": "9000789012",
+      "estado": "Activo",
+      "metodoPagoFavorito": "PayPal",
+      "listDireccion": [
+        {
+          "calle": "Calle 50",
+          "numero": "48-22",
+          "ciudad": "Cali",
+          "pais": "Colombia",
+          "alias": "Oficina"
+        }
+      ],
+      "listEnvio": []
+    }
+  ]
