@@ -1,7 +1,6 @@
 package uniquindio.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 import javafx.scene.control.TextField;
@@ -42,6 +41,7 @@ public class LoginController {
                 // Navegacion.cambiarVista();
             }
             if (usuario instanceof Repartidor repartidor) {
+            // tambien lo de repartidor, la pereza es mucha
 
             }
             // FALTA AÑADIR LO DE ADMINS
