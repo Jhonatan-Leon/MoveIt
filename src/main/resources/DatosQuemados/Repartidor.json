@@ -1,0 +1,24 @@
+[
+  {
+  "id": 201,
+  "nombreCompleto": "David Sánchez Pérez",
+  "email": "david.sanchez@delivery.com",
+  "password": "hashed_password_3",
+  "telefono": "555-9988",
+  "tipoDocumento": "CC",
+  "numeroDocumento": "1000345678",
+  "estado": "Activo",
+  "zonaCobertura": "Armenia Norte"
+  },
+  {
+  "id": 202,
+  "nombreCompleto": "Elena Gómez Castro",
+  "email": "elena.gomez@delivery.com",
+  "password": "hashed_password_4",
+  "telefono": "555-7766",
+  "tipoDocumento": "CC",
+  "numeroDocumento": "1000567890",
+  "estado": "Activo",
+  "zonaCobertura": "Armenia Centro"
+  }
+]
