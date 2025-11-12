@@ -11,7 +11,7 @@ public class GestionUser {
     private static GestionUser instance;
 
     private GestionUser() {
-        LIST_CLIENT = JsonLoader.CargarProductos("Cliente.json",  Client.class);
+        LIST_CLIENT = JsonLoader.CargarProductos("/DatosQuemados/Cliente.json",  Client.class);
     }
     public static GestionUser getInstance() {
         if (instance == null) {

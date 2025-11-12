@@ -11,7 +11,7 @@ public class GestionRepartidor {
     private static GestionRepartidor instance;
 
     private GestionRepartidor() {
-        listaRepartidor = JsonLoader.CargarProductos("Repartidor.json",  Repartidor.class);
+        listaRepartidor = JsonLoader.CargarProductos("/DatosQuemados/Repartidor.json",  Repartidor.class);
     }
 
     public static GestionRepartidor getInstance(){
