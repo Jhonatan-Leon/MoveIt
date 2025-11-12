@@ -11,7 +11,7 @@ public class GestionUser {
     private static GestionUser instance;
 
     private GestionUser() {
-        LIST_CLIENT = JsonLoader.CargarProductos("/DatosQuemados/Cliente.json",  Client.class);
+        LIST_CLIENT = JsonLoader.CargarProductos("DatosQuemados/Cliente.json",  Client.class);
     }
     public static GestionUser getInstance() {
         if (instance == null) {
@@ -40,7 +40,7 @@ public class GestionUser {
 
     public Client getUserById(String id) {
         for (Client u : LIST_CLIENT) {
-            if (u.getId().equals(id)) {
+            if (u.getEmail().equals(id)) {
                 return u;
             }
         }

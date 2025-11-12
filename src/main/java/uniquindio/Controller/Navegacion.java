@@ -21,12 +21,12 @@ public class Navegacion {
             FXMLLoader loader = new FXMLLoader(Navegacion.class.getResource(fxml));
             Parent nuevaVista = loader.load();
 
-            // Guardar vista actual en el stack
+            // Guardar vista actual en el stack (para volver después)
             if (stagePrincipal.getScene() != null) {
                 historial.push(stagePrincipal.getScene().getRoot());
             }
 
-            // Establece una nueva vista
+            // Establecer nueva vista
             stagePrincipal.getScene().setRoot(nuevaVista);
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,5 +43,4 @@ public class Navegacion {
     public static void reiniciarHistorial() {
         historial.clear();
     }
-
 }

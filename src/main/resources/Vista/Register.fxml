@@ -8,50 +8,61 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.LoginController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.RegisterController">
    <children>
       <ImageView fitHeight="820.0" fitWidth="1400.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/FondosFX/Login.png" />
+            <Image url="@../Images/FondosFX/Register.png" />
          </image>
       </ImageView>
-      <Text layoutX="327.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="o" textAlignment="CENTER" wrappingWidth="30.03125">
+      <TextField fx:id="txtTelefono" alignment="CENTER" layoutX="991.0" layoutY="230.0" prefHeight="47.0" prefWidth="259.0" promptText="Ingresa tu telefono" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <TextField fx:id="txtId" alignment="CENTER" layoutX="113.0" layoutY="280.0" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su ID" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;">
-         <font>
-            <Font size="20.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtContrasena" alignment="CENTER" layoutX="113.0" layoutY="347.0" onAction="#iniciarSesion" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su contraseña" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;">
+      <PasswordField fx:id="txtContrasena" alignment="CENTER" layoutX="713.0" layoutY="423.0" prefHeight="47.0" prefWidth="533.0" promptText="Ingrese su contraseña" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </PasswordField>
-      <Button layoutX="168.0" layoutY="410.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="47.0" prefWidth="359.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Iniciar sesión" textFill="WHITE">
+      <Button layoutX="784.0" layoutY="505.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="54.0" prefWidth="373.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Registrarse" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="161.0" layoutY="534.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="373.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Crear nueva cuenta" textFill="WHITE">
+      <TextField fx:id="txtId" alignment="CENTER" layoutX="708.0" layoutY="230.0" prefHeight="47.0" prefWidth="259.0" promptText="Ingresa tu Cedula / ID" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNombreCompleto" alignment="CENTER" layoutX="710.0" layoutY="295.0" prefHeight="47.0" prefWidth="539.0" promptText="Ingresa tu nombre completo" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCorreo" alignment="CENTER" layoutX="710.0" layoutY="360.0" prefHeight="47.0" prefWidth="539.0" promptText="Ingresa tu correo electronico" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </TextField>
+      <Button layoutX="940.0" layoutY="575.0" mnemonicParsing="false" onAction="#irAtras" prefHeight="54.0" prefWidth="54.0" rotate="180.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+               <image>
+                  <Image url="@../Images/ElementosApoyo/FlechaIrParaAtras.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Text fx:id="labelError" fill="RED" layoutX="218.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error al Iniciar sesion" textAlignment="CENTER" visible="false" wrappingWidth="259.03125">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>

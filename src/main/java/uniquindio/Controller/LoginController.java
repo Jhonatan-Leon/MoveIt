@@ -1,9 +1,11 @@
 package uniquindio.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import uniquindio.Errors.ControllException;
 import uniquindio.Facade.UserFacade;
@@ -23,22 +25,25 @@ public class LoginController {
     private PasswordField txtContrasena;
     @FXML
     private Text labelError;
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     private void initialize() {
         labelError.setVisible(false);
+        Platform.runLater(() -> rootPane.requestFocus());
+
     }
 
     @FXML
     private void iniciarSesion () {
         UserLoginDTO loginDTO = new UserLoginDTO(txtId.getText(), txtContrasena.getText());
-
         try {
             User usuario = UserFacade.getInstance().login(loginDTO);
             if (usuario  instanceof Client client) {
                 ClientSesionDTO clientDTO = ClientMapper.toDTO(client);
                 Sesion.iniciar(clientDTO);
-                // Navegacion.cambiarVista();
+                Navegacion.cambiarVista("/Vista/MainPageClient.fxml");
             }
             if (usuario instanceof Repartidor repartidor) {
             // tambien lo de repartidor, la pereza es mucha
@@ -55,5 +60,9 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void irARegister () {
+        Navegacion.cambiarVista("/Vista/Register.fxml");
+    }
 
 }
