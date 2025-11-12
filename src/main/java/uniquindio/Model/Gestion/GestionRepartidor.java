@@ -1,13 +1,18 @@
 package uniquindio.Model.Gestion;
 
+import uniquindio.Helper.JsonLoader;
 import uniquindio.Model.Repartidor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestionRepartidor {
-    private static final List<Repartidor> listaRepartidor = new ArrayList<>();
+    private static List<Repartidor> listaRepartidor = new ArrayList<>();
     private static GestionRepartidor instance;
+
+    private GestionRepartidor() {
+        listaRepartidor = JsonLoader.CargarProductos("Repartidor.json",  Repartidor.class);
+    }
 
     public static GestionRepartidor getInstance(){
         if(instance == null){
