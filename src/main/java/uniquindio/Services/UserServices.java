@@ -2,6 +2,7 @@ package uniquindio.Services;
 
 import uniquindio.Errors.ControllException;
 import uniquindio.Model.DTO.UserLoginDTO;
+import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Gestion.GestionRepartidor;
 import uniquindio.Model.Gestion.GestionUser;
 import uniquindio.Model.Client;

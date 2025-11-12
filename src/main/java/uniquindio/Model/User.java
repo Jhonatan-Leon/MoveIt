@@ -1,8 +1,8 @@
 package uniquindio.Model;
 
 abstract public class User {
-    protected String Id;
-    protected String NombreCompleto;
+    protected String id;
+    protected String nombreCompleto;
     protected String email;
     protected String password;
     protected String telefono;
@@ -12,8 +12,8 @@ abstract public class User {
 
     public User(String Id, String NombreCompleto, String email, String password, String telefono,
                 TipoDocumento tipoDocumento, String NumeroDocumento, boolean estado) {
-        this.Id = Id;
-        this.NombreCompleto = NombreCompleto;
+        this.id = Id;
+        this.nombreCompleto = NombreCompleto;
         this.email = email;
         this.password = password;
         this.telefono = telefono;
@@ -23,19 +23,19 @@ abstract public class User {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public String getNombreCompleto() {
-        return NombreCompleto;
+        return nombreCompleto;
     }
 
     public void setNombreCompleto(String nombreCompleto) {
-        NombreCompleto = nombreCompleto;
+        nombreCompleto = nombreCompleto;
     }
 
     public String getEmail() {

@@ -60,8 +60,13 @@ public class UserPostLoginDTO {
         if (nombreCompleto == null || nombreCompleto.isBlank()) {
             return "";
         }
-        String[] partes = nombreCompleto.trim().split(" ");
-        return partes[0];
+
+        String[] partes = nombreCompleto.trim().split("\\s+");
+        String primerNombre = partes[0];
+        String primerApellido = (partes.length > 1) ? partes[1] : "";
+
+        return primerNombre + " " + primerApellido;
     }
+
 
 }

@@ -22,7 +22,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="txtId" alignment="CENTER" layoutX="113.0" layoutY="280.0" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su ID" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+      <TextField fx:id="txtId" alignment="CENTER" layoutX="113.0" layoutY="280.0" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su correo" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="20.0" />
          </font>
