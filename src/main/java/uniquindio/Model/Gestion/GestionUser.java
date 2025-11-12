@@ -1,15 +1,17 @@
 package uniquindio.Model.Gestion;
 
+import uniquindio.Helper.JsonLoader;
 import uniquindio.Model.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestionUser {
-    private static final List<Client> LIST_CLIENT = new ArrayList<>();
+    private static List<Client> LIST_CLIENT = new ArrayList<>();
     private static GestionUser instance;
 
     private GestionUser() {
+        LIST_CLIENT = JsonLoader.CargarProductos("Cliente.json",  Client.class);
     }
     public static GestionUser getInstance() {
         if (instance == null) {
@@ -38,7 +40,7 @@ public class GestionUser {
 
     public Client getUserById(String id) {
         for (Client u : LIST_CLIENT) {
-            if (u.getId() == id) {
+            if (u.getId().equals(id)) {
                 return u;
             }
         }
@@ -63,7 +65,7 @@ public class GestionUser {
 
     public boolean deleteUser(String id) {
         for (Client u : LIST_CLIENT) {
-            if (u.getId() == id) {
+            if (u.getId().equals(id)) {
                 LIST_CLIENT.remove(u);
                 return true;
             }
