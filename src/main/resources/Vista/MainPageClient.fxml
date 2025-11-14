@@ -10,6 +10,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.MainPageClientController">
    <children>
@@ -18,6 +20,15 @@
             <Image url="@../Images/FondosFX/MainPageClient.png" />
          </image>
       </ImageView>
+      <TextFlow layoutX="82.0" layoutY="522.0" prefHeight="119.0" prefWidth="712.0" textAlignment="CENTER">
+         <children>
+            <Text fx:id="txtMensajePostRastreo" strokeWidth="0.0" text="Ingresa el código de tu envío y conoce en segundos el estado actual de tu paquete, recuerda que MoveIt te mantiene al tanto de cada movimiento, desde la recolección hasta la entrega.  ;)" textAlignment="CENTER" wrappingWidth="698.76220703125">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
       <TextField fx:id="txtIdPedido" alignment="CENTER" layoutX="78.0" layoutY="332.0" prefHeight="68.0" prefWidth="706.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="20.0" />
@@ -75,7 +86,7 @@
                   <Image url="@../Images/ElementosApoyo/LogoPerfil.png" />
                </image>
             </ImageView>
-            <Button alignment="BOTTOM_LEFT" layoutY="63.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#irAPerfil" prefHeight="45.0" prefWidth="262.0" style="-fx-background-color: #0f2846;" text="Perfil" textFill="WHITE">
+            <Button alignment="CENTER" layoutY="56.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#irAPerfil" prefHeight="45.0" prefWidth="262.0" style="-fx-background-color: #0f2846;" text="Perfil" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -83,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BOTTOM_LEFT" layoutX="2.0" layoutY="116.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="45.0" prefWidth="259.0" style="-fx-background-color: #0f2846;" text="Cerrar sesion" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="2.0" layoutY="124.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="45.0" prefWidth="259.0" style="-fx-background-color: #0f2846;" text="Cerrar sesion" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -91,12 +102,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="206.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="206.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/ElementosApoyo/LogoPerfil.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="203.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="203.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/ElementosApoyo/LogoCerrarSesion.png" />
                </image>
@@ -106,6 +117,72 @@
          <effect>
             <DropShadow />
          </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPerfil" layoutX="390.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <ImageView fitHeight="616.0" fitWidth="621.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/ElementosApoyo/PerfilClient.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <Text fx:id="txtNombreCompleto" layoutX="132.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Nombre)" textAlignment="CENTER" wrappingWidth="356.466796875">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
+            <Text layoutX="105.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cedula:" wrappingWidth="101.466796875">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
+            <Text layoutX="260.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" wrappingWidth="101.466796875">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
+            <Text layoutX="388.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefono:" wrappingWidth="127.466796875">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtFdCedula" editable="false" layoutX="46.0" layoutY="308.0" prefHeight="39.0" prefWidth="219.0" />
+            <TextField fx:id="txtFdCorreo" editable="false" layoutX="181.0" layoutY="400.0" prefHeight="39.0" prefWidth="259.0" />
+            <TextField fx:id="txtFdTelefono" editable="false" layoutX="342.0" layoutY="308.0" prefHeight="39.0" prefWidth="219.0" />
+            <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitarPerfil" prefHeight="51.0" prefWidth="53.0" rotate="180.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+                     <image>
+                        <Image url="@../Images/ElementosApoyo/FlechaIrParaAtras.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEditarDatos" layoutX="181.0" layoutY="513.0" mnemonicParsing="false" onAction="#editarDatos" prefHeight="51.0" prefWidth="259.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Editar datos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnConfirmar" layoutX="181.0" layoutY="513.0" mnemonicParsing="false" onAction="#confirmarCambios" prefHeight="51.0" prefWidth="259.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Confirmar" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

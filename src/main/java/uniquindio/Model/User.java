@@ -8,7 +8,7 @@ abstract public class User {
     protected String telefono;
     protected boolean estado;
     protected TipoDocumento tipoDocumento;
-    protected String NumeroDocumento;
+    protected String numeroDocumento;
 
     public User(String Id, String NombreCompleto, String email, String password, String telefono,
                 TipoDocumento tipoDocumento, String NumeroDocumento, boolean estado) {
@@ -18,7 +18,7 @@ abstract public class User {
         this.password = password;
         this.telefono = telefono;
         this.tipoDocumento = tipoDocumento;
-        this.NumeroDocumento = NumeroDocumento;
+        this.numeroDocumento = NumeroDocumento;
         this.estado = estado;
     }
 
@@ -79,10 +79,10 @@ abstract public class User {
     }
 
     public String getNumeroDocumento() {
-        return NumeroDocumento;
+        return numeroDocumento;
     }
 
     public void setNumeroDocumento(String numeroDocumento) {
-        NumeroDocumento = numeroDocumento;
+        numeroDocumento = numeroDocumento;
     }
 }

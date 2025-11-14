@@ -9,7 +9,7 @@ public class ClientMapper {
         if (client == null) return null;
 
         return new ClientSesionDTO(
-                client.getId(),
+                client.getNumeroDocumento(),
                 client.getNombreCompleto(),
                 client.getEmail(),
                 client.getTelefono(),
