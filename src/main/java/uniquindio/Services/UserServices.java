@@ -1,8 +1,10 @@
 package uniquindio.Services;
 
 import uniquindio.Errors.ControllException;
+import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
+import uniquindio.Model.Envio;
 import uniquindio.Model.Gestion.GestionRepartidor;
 import uniquindio.Model.Gestion.GestionUser;
 import uniquindio.Model.Client;
@@ -150,4 +152,12 @@ public class UserServices {
             throw new ControllException.ErrorServer("Error en el servidor");
         }
     }
+
+//    public static String obtenerMensajeRastreo (ClientSesionDTO user) {
+//        String mensaje = "";
+//        Envio envio = EnvioServices.getEnvio()
+//        if () {
+//        }
+//    }
+
 }

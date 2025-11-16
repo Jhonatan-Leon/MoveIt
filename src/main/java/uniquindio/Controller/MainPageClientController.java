@@ -1,10 +1,12 @@
 package uniquindio.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import uniquindio.Facade.EnvioFacade;
 import uniquindio.Helper.Sesion;
 import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
@@ -41,10 +43,20 @@ public class MainPageClientController {
     private Button btnConfirmar;
 
     public void initialize () {
+        Platform.runLater(() -> rootPane.requestFocus());
         btnPerfil.setText(user.toString());
         btnPerfil1.setText(user.toString());
         anchorOpcionesUsuario.setVisible(false);
         anchorPerfil.setVisible(false);
+    }
+
+    public void irEnvios () {
+        Navegacion.cambiarVista("/Vista/EnviosUser.fxml");
+    }
+
+    public void rastrear () {
+        String mensaje = EnvioFacade.obtenerMensajeRastreo(txtIdPedido.getText());
+        txtMensajePostRastreo.setText(mensaje);
     }
 
     public void extenderUsuario () {

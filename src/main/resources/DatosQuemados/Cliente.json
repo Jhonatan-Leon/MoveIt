@@ -9,34 +9,89 @@
       "numeroDocumento": "1000123456",
       "estado": "Activo",
       "metodoPagoFavorito": "Tarjeta de Crédito",
-      "listDireccion": [
-        {
-          "calle": "Carrera 10",
-          "numero": "25A-45",
-          "ciudad": "Bogotá",
-          "pais": "Colombia",
-          "alias": "Casa Principal"
-        },
-        {
-          "calle": "Avenida 7",
-          "numero": "15-10",
-          "ciudad": "Medellín",
-          "pais": "Colombia",
-          "alias": "Apartamento de Verano"
-        }
-      ],
       "listEnvio": [
         {
-          "idEnvio": "E001",
-          "fechaPedido": "2025-11-08T10:30:00Z",
-          "estado": "Entregado",
-          "costo": 15.50
+          "IdEnvio": 1,
+          "tipoDireccion": "Casa Principal",
+          "listpaquete": [
+            {
+              "IdPaquete": "Caja grande con artículos de cocina",
+              "peso": 5.2,
+              "alto": 45.0,
+              "ancho": 35.0,
+              "volumen": 55125.0
+            },
+            {
+              "IdPaquete": "Bolsa pequeña con accesorios",
+              "peso": 0.8,
+              "alto": 15.0,
+              "ancho": 12.0,
+              "volumen": 2160.0
+            },
+            {
+              "IdPaquete": "Caja mediana con libros",
+              "peso": 3.6,
+              "alto": 28.0,
+              "ancho": 22.0,
+              "volumen": 12320.0
+            },
+            {
+              "IdPaquete": "Sobre acolchado con cableado",
+              "peso": 0.4,
+              "alto": 4.0,
+              "ancho": 25.0,
+              "volumen": 400.0
+            },
+            {
+              "IdPaquete": "Paquete cilíndrico con póster",
+              "peso": 0.6,
+              "alto": 60.0,
+              "ancho": 10.0,
+              "volumen": 6000.0
+            }
+          ],
+          "estado": "ENTREGADO",
+          "Costo": 15.50,
+          "fechaCreacion": "2025-11-08T10:30:00Z",
+          "fechaEstimada": "2025-11-10T10:30:00Z"
         },
         {
-          "idEnvio": "E002",
-          "fechaPedido": "2025-11-10T15:00:00Z",
-          "estado": "En Reparto",
-          "costo": 12.00
+          "IdEnvio": 2,
+          "tipoDireccion": "Apartamento de Verano",
+          "listpaquete": [
+            {
+              "IdPaquete": "Caja pequeña con componentes electrónicos",
+              "peso": 1.1,
+              "alto": 18.0,
+              "ancho": 14.0,
+              "volumen": 3528.0
+            },
+            {
+              "IdPaquete": "Caja rectangular con ropa doblada",
+              "peso": 2.4,
+              "alto": 30.0,
+              "ancho": 25.0,
+              "volumen": 18750.0
+            },
+            {
+              "IdPaquete": "Bolsa sellada con productos de limpieza",
+              "peso": 3.2,
+              "alto": 22.0,
+              "ancho": 20.0,
+              "volumen": 8800.0
+            },
+            {
+              "IdPaquete": "Paquete plano con documentos importantes",
+              "peso": 0.3,
+              "alto": 2.0,
+              "ancho": 32.0,
+              "volumen": 640.0
+            }
+          ],
+          "estado": "EN_RUTA",
+          "Costo": 12.00,
+          "fechaCreacion": "2025-11-10T15:00:00Z",
+          "fechaEstimada": "2025-11-12T15:00:00Z"
         }
       ]
     },
