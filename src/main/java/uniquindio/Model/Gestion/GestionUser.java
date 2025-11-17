@@ -2,6 +2,7 @@ package uniquindio.Model.Gestion;
 
 import uniquindio.Helper.JsonLoader;
 import uniquindio.Model.Client;
+import uniquindio.Model.Envio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,15 @@ public class GestionUser {
 
     private GestionUser() {
         LIST_CLIENT = JsonLoader.CargarProductos("DatosQuemados/Cliente.json",  Client.class);
+        GestionEnvios gestionEnvios = GestionEnvios.getInstance();
+
+        for (Client c : LIST_CLIENT) {
+            if (c.getListEnvio() != null) {
+                for (Envio e : c.getListEnvio()) {
+                    gestionEnvios.AddEnvio(e);
+                }
+            }
+        }
     }
     public static GestionUser getInstance() {
         if (instance == null) {
@@ -40,7 +50,7 @@ public class GestionUser {
 
     public Client getUserById(String id) {
         for (Client u : LIST_CLIENT) {
-            if (u.getId().equals(id)) {
+            if (u.getEmail().equals(id)) {
                 return u;
             }
         }

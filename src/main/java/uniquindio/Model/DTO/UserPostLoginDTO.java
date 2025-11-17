@@ -54,4 +54,19 @@ public class UserPostLoginDTO {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        if (nombreCompleto == null || nombreCompleto.isBlank()) {
+            return "";
+        }
+
+        String[] partes = nombreCompleto.trim().split("\\s+");
+        String primerNombre = partes[0];
+        String primerApellido = (partes.length > 1) ? partes[1] : "";
+
+        return primerNombre + " " + primerApellido;
+    }
+
+
 }

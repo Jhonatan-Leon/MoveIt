@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.LoginController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.LoginController">
    <children>
       <ImageView fitHeight="820.0" fitWidth="1400.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,12 +22,12 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="txtId" alignment="CENTER" layoutX="113.0" layoutY="280.0" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su ID" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;">
+      <TextField fx:id="txtId" alignment="CENTER" layoutX="113.0" layoutY="280.0" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su correo" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtContrasena" alignment="CENTER" layoutX="113.0" layoutY="347.0" onAction="#iniciarSesion" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su contraseña" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;">
+      <PasswordField fx:id="txtContrasena" alignment="CENTER" layoutX="113.0" layoutY="347.0" onAction="#iniciarSesion" prefHeight="47.0" prefWidth="469.0" promptText="Ingrese su contraseña" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="20.0" />
          </font>
@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="161.0" layoutY="534.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="373.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Crear nueva cuenta" textFill="WHITE">
+      <Button layoutX="161.0" layoutY="534.0" mnemonicParsing="false" onAction="#irARegister" prefHeight="47.0" prefWidth="373.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Crear nueva cuenta" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

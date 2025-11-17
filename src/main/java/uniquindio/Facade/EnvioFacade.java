@@ -39,4 +39,8 @@ public class EnvioFacade {
 
         return  EnvioServices.getListEnvios();
     }
+
+    public static String obtenerMensajeRastreo (String id) {
+        return EnvioServices.obtenerMensajeRastreo(id);
+    }
 }
