@@ -2,19 +2,21 @@ package uniquindio.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import uniquindio.Errors.ControllException;
 import uniquindio.Helper.Sesion;
+import uniquindio.Mappers.ClientMapper;
+import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.Envio;
+import uniquindio.Model.TipoEstado;
+import uniquindio.Services.EnvioServices;
 import uniquindio.Utils.JavaFxAux;
 
+import java.util.Date;
 import java.util.List;
 
 public class EnvioUserController {
@@ -47,6 +49,10 @@ public class EnvioUserController {
     @FXML private TableColumn<uniquindio.Model.Package, Float> colAlto;
     @FXML private TableColumn<uniquindio.Model.Package, Float> colAncho;
     @FXML private TableColumn<uniquindio.Model.Package, Float> colVolumen;
+    // FILTRO
+    @FXML private DatePicker dpFechaInicio;
+    @FXML private DatePicker dpFechaFin;
+    @FXML private ChoiceBox<TipoEstado> chBxEstado;
 
 
     public EnvioUserController() throws ControllException.UserNotFound {
@@ -81,8 +87,27 @@ public class EnvioUserController {
         anchorOpcionesUsuario.setVisible(false);
         anchorPerfil.setVisible(false);
         tableEnvios.setItems(FXCollections.observableList(listEnvios));
+
+        // Iniciar ChoiceBox de estados
+        chBxEstado.getItems().setAll(TipoEstado.values());
+        chBxEstado.setValue(null);
+
     }
 
+    public void filtrarEnvios() {
+        try {
+            Client cliente = ClientMapper.sesionToEntity(user);
+
+            Date fechaInicio = dpFechaInicio.getValue() != null ? java.sql.Date.valueOf(dpFechaInicio.getValue()) : null;
+            Date fechaFin = dpFechaFin.getValue() != null ? java.sql.Date.valueOf(dpFechaFin.getValue()) : null;
+            TipoEstado estado = chBxEstado.getValue();
+
+            List<Envio> filtrados = EnvioServices.filtrarEnvios(cliente, fechaInicio, fechaFin, estado);
+            tableEnvios.setItems(FXCollections.observableList(filtrados));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void extenderUsuario () {

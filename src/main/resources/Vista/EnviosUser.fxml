@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -118,20 +120,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="WHITE" layoutX="339.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver solicitudes de envio" textAlignment="CENTER" wrappingWidth="710.4166259765625">
+      <Text fill="WHITE" layoutX="157.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver solicitudes de envio" wrappingWidth="566.4166259765625">
          <font>
-            <Font name="System Bold" size="50.0" />
+            <Font name="System Bold" size="45.0" />
          </font>
       </Text>
-      <Line endX="367.0" layoutX="553.0" layoutY="262.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
-      <TableView fx:id="tableEnvios" layoutX="157.0" layoutY="291.0" prefHeight="152.0" prefWidth="1110.0">
+      <Line endX="367.0" layoutX="258.0" layoutY="262.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+      <TableView fx:id="tableEnvios" layoutX="157.0" layoutY="281.0" prefHeight="179.0" prefWidth="893.0">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="109.0" text="ID" />
-          <TableColumn fx:id="colTipoDireccion" prefWidth="216.0" text="Tipo de direccion" />
-            <TableColumn fx:id="colEstado" prefWidth="191.0" text="Estado" />
-            <TableColumn fx:id="colCosto" prefWidth="149.0" text="Costo" />
-            <TableColumn fx:id="colFechaEstimada" prefWidth="215.0" text="fecha estimada" />
-            <TableColumn fx:id="colFechaCreacion" prefWidth="229.0" text="Fecha de creacion" />
+          <TableColumn fx:id="colId" prefWidth="98.0" text="ID" />
+          <TableColumn fx:id="colTipoDireccion" prefWidth="154.0" text="Tipo de direccion" />
+            <TableColumn fx:id="colEstado" prefWidth="139.0" text="Estado" />
+            <TableColumn fx:id="colCosto" prefWidth="155.0" text="Costo" />
+            <TableColumn fx:id="colFechaEstimada" prefWidth="178.0" text="fecha estimada" />
+            <TableColumn fx:id="colFechaCreacion" prefWidth="168.0" text="Fecha de creacion" />
         </columns>
       </TableView>
       <ImageView fitHeight="16.0" fitWidth="18.0" layoutX="254.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
@@ -139,7 +141,7 @@
             <Image url="@../Images/ElementosApoyo/Desplegable.png" />
          </image>
       </ImageView>
-       <TableView fx:id="tableContenido" layoutX="157.0" layoutY="536.0" prefHeight="166.0" prefWidth="1110.0">
+       <TableView fx:id="tableContenido" layoutX="157.0" layoutY="535.0" prefHeight="166.0" prefWidth="1110.0">
            <columns>
                <TableColumn fx:id="colIdPaquete" prefWidth="310.0" text="Descripción" />
                <TableColumn fx:id="colPeso" prefWidth="207.0" text="Peso (Kg)" />
@@ -148,7 +150,7 @@
                <TableColumn fx:id="colVolumen" prefWidth="180.0" text="Volumen (cm³)" />
            </columns>
        </TableView>
-      <Text fill="WHITE" layoutX="339.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver contenido del envio seleccionado" textAlignment="CENTER" wrappingWidth="710.4166259765625">
+      <Text fill="WHITE" layoutX="157.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver contenido del envio seleccionado" wrappingWidth="710.4166259765625">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -208,5 +210,37 @@
             <DropShadow />
          </effect>
       </AnchorPane>
+      <Rectangle arcHeight="100.0" arcWidth="50.0" fill="#0f2846" height="277.0" layoutX="1086.0" layoutY="212.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
+      <DatePicker fx:id="dpFechaInicio" layoutX="1102.0" layoutY="292.0" prefHeight="25.0" prefWidth="155.0" />
+      <DatePicker fx:id="dpFechaFin" layoutX="1102.0" layoutY="347.0" prefHeight="25.0" prefWidth="155.0" />
+      <ChoiceBox fx:id="chBxEstado" layoutX="1116.0" layoutY="401.0" prefHeight="16.0" prefWidth="127.0" />
+      <Text fill="WHITE" layoutX="1129.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtros" textAlignment="CENTER" wrappingWidth="101.466796875">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1102.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha inicio:" wrappingWidth="127.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1102.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha fin:" wrappingWidth="127.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1102.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado:" wrappingWidth="127.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="1113.0" layoutY="441.0" mnemonicParsing="false" onAction="#filtrarEnvios" prefHeight="30.0" prefWidth="134.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Filtrar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
