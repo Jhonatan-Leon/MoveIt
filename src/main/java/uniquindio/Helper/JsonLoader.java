@@ -16,7 +16,7 @@ public class JsonLoader {
             try (var reader = new InputStreamReader(inputStream)) {
                 // crear objecto
                 Gson gson = new Gson();
-                //Indica como tratar el archivo Productos.JSON
+                //Indica como tratar el archivo .JSON
                 Type listType = TypeToken.getParameterized(List.class, clazz).getType();
                 //Lee los datos del json y convierte a un List tipo especifico pasado
                 return gson.fromJson(reader, listType);
