@@ -142,4 +142,8 @@ public class DireccionesClientController {
         Navegacion.cambiarVista("/Vista/EnviosUser.fxml");
     }
 
+    public void irCotizar () {
+        Navegacion.cambiarVista("/Vista/CotizarClient.fxml");
+    }
+
 }

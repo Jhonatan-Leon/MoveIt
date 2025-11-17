@@ -1,77 +1,43 @@
 package uniquindio.Controller;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import uniquindio.Facade.EnvioFacade;
 import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
 import uniquindio.Model.Client;
-import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Envio;
 import uniquindio.Services.ReportService;
-import javafx.scene.Node;
+
 import java.io.File;
 import java.util.List;
 
-public class MainPageClientController {
-    // INSTANCIA DEL LOGIN
+public class CotizarClientController {
+
     UserPostLoginDTO user = Sesion.getUsuarioActual();
 
-    @FXML
-    private AnchorPane rootPane;
-    @FXML
-    private TextField txtIdPedido;
-    @FXML
-    private Button btnPerfil;
-    @FXML
-    private Button btnPerfil1;
-    @FXML
-    private AnchorPane anchorOpcionesUsuario;
-    @FXML
-    private Text txtMensajePostRastreo;
-    @FXML
-    private TextField txtFdCedula;
-    @FXML
-    private TextField txtFdTelefono;
-    @FXML
-    private TextField txtFdCorreo;
-    @FXML
-    private Text txtNombreCompleto;
-    @FXML
-    private AnchorPane anchorPerfil;
-    @FXML
-    private Button btnEditarDatos;
-    @FXML
-    private Button btnConfirmar;
-    @FXML
-    private Button btnReporte;
+    @FXML private AnchorPane anchorPerfil;
+    @FXML private Button btnEditarDatos;
+    @FXML private Button btnConfirmar;
+    @FXML private AnchorPane rootPane;
+    @FXML private Button btnPerfil;
+    @FXML private Button btnPerfil1;
+    @FXML private AnchorPane anchorOpcionesUsuario;
+    @FXML private TextField txtFdCedula;
+    @FXML private TextField txtFdTelefono;
+    @FXML private TextField txtFdCorreo;
+    @FXML private Text txtNombreCompleto;
+    @FXML private Button btnReporte;
 
     public void initialize () {
-        Platform.runLater(() -> rootPane.requestFocus());
         btnPerfil.setText(user.toString());
         btnPerfil1.setText(user.toString());
         anchorOpcionesUsuario.setVisible(false);
         anchorPerfil.setVisible(false);
-    }
-
-    public void irDirecciones () {
-        Navegacion.cambiarVista("/Vista/DireccionesClient.fxml");
-    }
-
-    public void irEnvios () {
-        Navegacion.cambiarVista("/Vista/EnviosUser.fxml");
-    }
-
-    public void rastrear () {
-        String mensaje = EnvioFacade.obtenerMensajeRastreo(txtIdPedido.getText());
-        txtMensajePostRastreo.setText(mensaje);
     }
 
     public void extenderUsuario () {
@@ -88,6 +54,10 @@ public class MainPageClientController {
         txtFdCedula.setText(user.getId());
         txtFdTelefono.setText(user.getTelefono());
         txtFdCorreo.setText(user.getEmail());
+    }
+
+    public void irMain () {
+        Navegacion.cambiarVista("/Vista/MainPageClient.fxml");
     }
 
     public void editarDatos () {
@@ -119,10 +89,9 @@ public class MainPageClientController {
         Sesion.cerrar();
     }
 
-    public void irCotizar () {
-        Navegacion.cambiarVista("/Vista/CotizarClient.fxml");
+    public void irDirecciones () {
+        Navegacion.cambiarVista("/Vista/DireccionesClient.fxml");
     }
-
 
     public void descargarReporte() {
         try {
@@ -145,6 +114,10 @@ public class MainPageClientController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void irEnvios () {
+        Navegacion.cambiarVista("/Vista/EnviosUser.fxml");
     }
 
 }

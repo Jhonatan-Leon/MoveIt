@@ -169,4 +169,8 @@ public class AnadirDireccionClientController {
     public void irEnvios () {
         Navegacion.cambiarVista("/Vista/EnviosUser.fxml");
     }
+
+    public void irCotizar () {
+        Navegacion.cambiarVista("/Vista/CotizarClient.fxml");
+    }
 }

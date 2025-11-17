@@ -11,7 +11,6 @@ import uniquindio.Errors.ControllException;
 import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
 import uniquindio.Model.Client;
-import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Envio;
 import uniquindio.Model.TipoEstado;
@@ -190,5 +189,11 @@ public class EnvioUserController {
             e.printStackTrace();
         }
     }
+
+    public void irCotizar () {
+        Navegacion.cambiarVista("/Vista/CotizarClient.fxml");
+    }
+
+
 
 }
