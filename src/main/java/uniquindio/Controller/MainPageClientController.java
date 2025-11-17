@@ -13,6 +13,7 @@ import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
 import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Envio;
 import uniquindio.Services.ReportService;
 import javafx.scene.Node;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class MainPageClientController {
     // INSTANCIA DEL LOGIN
-    ClientSesionDTO user = Sesion.getUsuarioActual();
+    UserPostLoginDTO user = Sesion.getUsuarioActual();
 
     @FXML
     private AnchorPane rootPane;

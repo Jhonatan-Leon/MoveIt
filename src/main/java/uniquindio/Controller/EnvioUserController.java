@@ -6,22 +6,26 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import uniquindio.Errors.ControllException;
 import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
 import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Envio;
 import uniquindio.Model.TipoEstado;
 import uniquindio.Services.EnvioServices;
+import uniquindio.Services.ReportService;
 import uniquindio.Utils.JavaFxAux;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
 public class EnvioUserController {
 
-    ClientSesionDTO user = Sesion.getUsuarioActual();
+    UserPostLoginDTO user = Sesion.getUsuarioActual();
 
     @FXML private AnchorPane anchorPerfil;
     @FXML private Button btnEditarDatos;
@@ -34,6 +38,8 @@ public class EnvioUserController {
     @FXML private TextField txtFdTelefono;
     @FXML private TextField txtFdCorreo;
     @FXML private Text txtNombreCompleto;
+    @FXML private Button btnReporte;
+
     // TABLA DE ENVIOS
     @FXML private TableView<Envio> tableEnvios;
     @FXML private TableColumn colId;
@@ -88,7 +94,6 @@ public class EnvioUserController {
         anchorPerfil.setVisible(false);
         tableEnvios.setItems(FXCollections.observableList(listEnvios));
 
-        // Iniciar ChoiceBox de estados
         chBxEstado.getItems().setAll(TipoEstado.values());
         chBxEstado.setValue(null);
 
@@ -126,8 +131,8 @@ public class EnvioUserController {
         txtFdCorreo.setText(user.getEmail());
     }
 
-    public void irAtras () {
-        Navegacion.volver();
+    public void irMain () {
+        Navegacion.cambiarVista("/Vista/MainPageClient.fxml");
     }
 
     public void editarDatos () {
@@ -157,6 +162,33 @@ public class EnvioUserController {
         Navegacion.cambiarVista("/Vista/Login.fxml");
         Navegacion.reiniciarHistorial();
         Sesion.cerrar();
+    }
+
+    public void irDirecciones () {
+        Navegacion.cambiarVista("/Vista/DireccionesClient.fxml");
+    }
+
+    public void descargarReporte() {
+        try {
+            Client client = ClientMapper.sesionToEntity(user);
+            List<Envio> envios = client.getListEnvio();
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Guardar reporte PDF");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
+            );
+            fileChooser.setInitialFileName("Reporte_Envios.pdf");
+
+            File archivo = fileChooser.showSaveDialog(btnReporte.getScene().getWindow());
+
+            if (archivo != null) {
+                ReportService.exportarEnviosPDF(envios, archivo.getAbsolutePath());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

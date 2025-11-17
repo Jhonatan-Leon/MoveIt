@@ -9,22 +9,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import netscape.javascript.JSObject;
 import uniquindio.Errors.ControllException;
 import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
 import uniquindio.Model.Client;
-import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Direccion;
+import uniquindio.Model.Envio;
 import uniquindio.Services.DireccionServices;
-import uniquindio.Services.UserServices;
+import uniquindio.Services.ReportService;
 import uniquindio.Utils.JSBridge;
 
-import java.beans.Visibility;
+import java.io.File;
+import java.util.List;
 
 public class AnadirDireccionClientController {
 
-    private ClientSesionDTO user = Sesion.getUsuarioActual();
+    private UserPostLoginDTO user = Sesion.getUsuarioActual();
     private Double latitudSeleccionada;
     private Double longitudSeleccionada;
 
@@ -39,6 +42,8 @@ public class AnadirDireccionClientController {
     @FXML private TextField txtFdTelefono;
     @FXML private TextField txtFdCorreo;
     @FXML private Text txtNombreCompleto;
+    @FXML private Button btnReporte;
+
 
     @FXML private TextField txtAlias;
     @FXML private TextField txtCiudad;
@@ -136,5 +141,32 @@ public class AnadirDireccionClientController {
         Navegacion.cambiarVista("/Vista/Login.fxml");
         Navegacion.reiniciarHistorial();
         Sesion.cerrar();
+    }
+
+    public void descargarReporte() {
+        try {
+            Client client = ClientMapper.sesionToEntity(user);
+            List<Envio> envios = client.getListEnvio();
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Guardar reporte PDF");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
+            );
+            fileChooser.setInitialFileName("Reporte_Envios.pdf");
+
+            File archivo = fileChooser.showSaveDialog(btnReporte.getScene().getWindow());
+
+            if (archivo != null) {
+                ReportService.exportarEnviosPDF(envios, archivo.getAbsolutePath());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void irEnvios () {
+        Navegacion.cambiarVista("/Vista/EnviosUser.fxml");
     }
 }

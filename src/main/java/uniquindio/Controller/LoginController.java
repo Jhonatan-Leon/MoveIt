@@ -11,8 +11,10 @@ import uniquindio.Errors.ControllException;
 import uniquindio.Facade.UserFacade;
 import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
+import uniquindio.Mappers.RepartidorMapper;
 import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.DTO.RepartidorSesionDTO;
 import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.Repartidor;
 import uniquindio.Model.User;
@@ -46,8 +48,9 @@ public class LoginController {
                 Navegacion.cambiarVista("/Vista/MainPageClient.fxml");
             }
             if (usuario instanceof Repartidor repartidor) {
-            // tambien lo de repartidor, la pereza es mucha
-
+                RepartidorSesionDTO repartidorDTO = RepartidorMapper.toDTO(repartidor);
+                Sesion.iniciar(repartidorDTO);
+                Navegacion.cambiarVista("/Vista/Repartidor/MainPageRepartidor.fxml");
             }
             // FALTA AÑADIR LO DE ADMINS
 
