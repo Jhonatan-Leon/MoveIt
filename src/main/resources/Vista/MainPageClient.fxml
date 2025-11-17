@@ -211,5 +211,18 @@
             </Button>
          </children>
       </AnchorPane>
+      <Button fx:id="btnReporte" layoutX="772.0" layoutY="135.0" mnemonicParsing="false" onAction="#descargarReporte" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Reportes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="946.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/ElementosApoyo/Descarga.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

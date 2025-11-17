@@ -2,13 +2,22 @@ package uniquindio.Controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import uniquindio.Facade.EnvioFacade;
 import uniquindio.Helper.Sesion;
+import uniquindio.Mappers.ClientMapper;
+import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.Envio;
+import uniquindio.Services.ReportService;
+import javafx.scene.Node;
+import java.io.File;
+import java.util.List;
 
 public class MainPageClientController {
     // INSTANCIA DEL LOGIN
@@ -40,6 +49,8 @@ public class MainPageClientController {
     private Button btnEditarDatos;
     @FXML
     private Button btnConfirmar;
+    @FXML
+    private Button btnReporte;
 
     public void initialize () {
         Platform.runLater(() -> rootPane.requestFocus());
@@ -105,6 +116,30 @@ public class MainPageClientController {
         Navegacion.cambiarVista("/Vista/Login.fxml");
         Navegacion.reiniciarHistorial();
         Sesion.cerrar();
+    }
+
+
+    public void descargarReporte() {
+        try {
+            Client client = ClientMapper.sesionToEntity(user);
+            List<Envio> envios = client.getListEnvio();
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Guardar reporte PDF");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
+            );
+            fileChooser.setInitialFileName("Reporte_Envios.pdf");
+
+            File archivo = fileChooser.showSaveDialog(btnReporte.getScene().getWindow());
+
+            if (archivo != null) {
+                ReportService.exportarEnviosPDF(envios, archivo.getAbsolutePath());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
