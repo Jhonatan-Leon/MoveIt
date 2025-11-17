@@ -1,5 +1,8 @@
 package uniquindio.Model;
 
+import uniquindio.Errors.ControllException;
+import uniquindio.Utils.addDireccionAleatoriaID;
+
 public class Direccion {
     private String IdDireccion;
     private String Alias;
@@ -7,8 +10,8 @@ public class Direccion {
     private String Ciudad;
     private String Coordenadas;
 
-    public Direccion(String IdDireccion, String Alias, String Calle, String Ciudad, String Coordenadas) {
-        this.IdDireccion = IdDireccion;
+    public Direccion(String Alias, String Calle, String Ciudad, String Coordenadas) throws ControllException.UserCreate {
+        this.IdDireccion = addDireccionAleatoriaID.addDireccionAleatoria();
         this.Alias = Alias;
         this.Calle = Calle;
         this.Ciudad = Ciudad;

@@ -72,7 +72,7 @@ public class DireccionesClientController {
         anchorPerfil.setVisible(false);
     }
 
-    public void irAtras () { Navegacion.volver(); }
+    public void irMain () { Navegacion.cambiarVista("/Vista/MainPageClient.fxml"); }
 
     public void irAPerfil () {
         anchorPerfil.setVisible(true);

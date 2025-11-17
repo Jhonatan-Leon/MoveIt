@@ -12,8 +12,15 @@ import javafx.scene.web.WebView;
 import netscape.javascript.JSObject;
 import uniquindio.Errors.ControllException;
 import uniquindio.Helper.Sesion;
+import uniquindio.Mappers.ClientMapper;
+import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.Direccion;
+import uniquindio.Services.DireccionServices;
+import uniquindio.Services.UserServices;
 import uniquindio.Utils.JSBridge;
+
+import java.beans.Visibility;
 
 public class AnadirDireccionClientController {
 
@@ -38,6 +45,7 @@ public class AnadirDireccionClientController {
     @FXML private TextField txtCalle;
     @FXML private WebView webViewMapa;
     @FXML private TextField txtCoordenadas;
+    @FXML private AnchorPane anchorMensaje;
 
     // ya ni se cuantas veces he tenido que cambiar cosas del controlador para que funcione
 
@@ -63,6 +71,10 @@ public class AnadirDireccionClientController {
         engine.load(getClass().getResource("/Elementos/mapa.html").toExternalForm());
     }
 
+    public void irDirecciones () {
+        Navegacion.cambiarVista("/Vista/DireccionesClient.fxml");
+    }
+
 
     public void setCoordenadas(double lat, double lng) {
         this.latitudSeleccionada = lat;
@@ -73,13 +85,11 @@ public class AnadirDireccionClientController {
         });
     }
 
-    public void anadirDireccion() {
-        // Lógica para añadir dirección usando latitudSeleccionada y longitudSeleccionada
-        System.out.println("Agregando dirección: " + latitudSeleccionada + ", " + longitudSeleccionada);
-    }
-
-    public void confirmarClick() {
-        // Lógica para confirmar cambios
+    public void anadirDireccion() throws ControllException.UserCreate, ControllException.UserNotFound {
+        Direccion newDireccion = new Direccion(txtAlias.getText(),txtCalle.getText(),txtCiudad.getText(),txtCoordenadas.getText());
+        Client client = ClientMapper.sesionToEntity(user);
+        DireccionServices.addDireccion(newDireccion,client);
+        anchorMensaje.setVisible(true);
     }
 
     // Métodos UI

@@ -1,15 +1,12 @@
 package uniquindio.Services;
 
 import uniquindio.Errors.ControllException;
+import uniquindio.Model.*;
 import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
-import uniquindio.Model.Envio;
 import uniquindio.Model.Gestion.GestionRepartidor;
 import uniquindio.Model.Gestion.GestionUser;
-import uniquindio.Model.Client;
-import uniquindio.Model.Repartidor;
-import uniquindio.Model.User;
 
 import java.util.List;
 
@@ -153,11 +150,27 @@ public class UserServices {
         }
     }
 
-//    public static String obtenerMensajeRastreo (ClientSesionDTO user) {
-//        String mensaje = "";
-//        Envio envio = EnvioServices.getEnvio()
-//        if () {
-//        }
-//    }
+
+    public static Direccion addDireccionToClient(Client client, Direccion nuevaDireccion) throws ControllException.UserCreate {
+        try {
+            if (client == null) {
+                throw new ControllException.UserCreate("El cliente no puede ser nulo");
+            }
+            if (nuevaDireccion == null) {
+                throw new ControllException.UserCreate("La dirección no puede ser nula");
+            }
+
+            // Agregar la dirección al cliente
+            client.getListDireccion().add(nuevaDireccion);
+
+            return nuevaDireccion;
+
+        } catch (ControllException.UserCreate e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ControllException.UserCreate("Error al agregar dirección: " + e.getMessage());
+        }
+    }
+
 
 }
