@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 import uniquindio.Facade.EnvioFacade;
 import uniquindio.Helper.Sesion;
 import uniquindio.Model.DTO.ClientSesionDTO;
-import uniquindio.Model.DTO.UserPostLoginDTO;
 
 public class MainPageClientController {
     // INSTANCIA DEL LOGIN
@@ -48,6 +47,10 @@ public class MainPageClientController {
         btnPerfil1.setText(user.toString());
         anchorOpcionesUsuario.setVisible(false);
         anchorPerfil.setVisible(false);
+    }
+
+    public void irDirecciones () {
+        Navegacion.cambiarVista("/Vista/DireccionesClient.fxml");
     }
 
     public void irEnvios () {

@@ -9,6 +9,22 @@
       "numeroDocumento": "1000123456",
       "estado": "Activo",
       "metodoPagoFavorito": "Tarjeta de Crédito",
+      "listDireccion": [
+        {
+          "IdDireccion": "DIR-001",
+          "Alias": "Casa Principal",
+          "Calle": "Carrera 15 #48-20",
+          "Ciudad": "Bogotá",
+          "Coordenadas": "4.648625, -74.247896"
+        },
+        {
+          "IdDireccion": "DIR-002",
+          "Alias": "Apartamento de Verano",
+          "Calle": "Avenida del Mar #12-45",
+          "Ciudad": "Santa Marta",
+          "Coordenadas": "11.240789, -74.211113"
+        }
+      ],
       "listEnvio": [
         {
           "IdEnvio": 1,

@@ -11,37 +11,15 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.MainPageClientController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.AnadirDireccionClientController">
    <children>
       <ImageView fitHeight="820.0" fitWidth="1400.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/FondosFX/MainPageClient.png" />
+            <Image url="@../Images/FondosFX/DireccionesClient.png" />
          </image>
       </ImageView>
-      <TextFlow layoutX="82.0" layoutY="522.0" prefHeight="119.0" prefWidth="712.0" textAlignment="CENTER">
-         <children>
-            <Text fx:id="txtMensajePostRastreo" strokeWidth="0.0" text="Ingresa el código de tu envío y conoce en segundos el estado actual de tu paquete, recuerda que MoveIt te mantiene al tanto de cada movimiento, desde la recolección hasta la entrega.  ;)" textAlignment="CENTER" wrappingWidth="698.76220703125">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Text>
-         </children>
-      </TextFlow>
-      <TextField fx:id="txtIdPedido" alignment="CENTER" layoutX="78.0" layoutY="332.0" prefHeight="68.0" prefWidth="706.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button layoutX="263.0" layoutY="423.0" mnemonicParsing="false" onAction="#rastrear" prefHeight="58.0" prefWidth="321.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Rastrear" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button fx:id="btnPerfil" layoutX="1059.0" layoutY="62.0" mnemonicParsing="false" onAction="#extenderUsuario" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="(NOMBRE)" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -61,6 +39,27 @@
       <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1265.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/ElementosApoyo/LogoPerfil.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#020d26" height="580.0" layoutX="78.0" layoutY="192.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1268.0" />
+      <Text fill="WHITE" layoutX="339.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir nueva direccion" textAlignment="CENTER" wrappingWidth="710.4166259765625">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Text>
+      <Line endX="367.0" layoutX="553.0" layoutY="262.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#020d26" height="50.0" layoutX="1004.0" layoutY="156.0" stroke="#020d2600" strokeType="INSIDE" width="212.0" />
+      <Button fx:id="btnDirecciones" layoutX="1004.0" layoutY="137.0" mnemonicParsing="false" onAction="#irMain" prefHeight="8.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Direcciones" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="16.0" fitWidth="18.0" layoutX="1182.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../Images/ElementosApoyo/Desplegable.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="anchorOpcionesUsuario" layoutX="1059.0" layoutY="62.0" prefHeight="200.0" prefWidth="261.0" visible="false">
@@ -184,8 +183,52 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="78.0" layoutY="175.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="78.0" layoutY="137.0" mnemonicParsing="false" onAction="#irEnvios" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Envios" textFill="WHITE">
+      <TextField fx:id="txtAlias" alignment="CENTER" layoutX="117.0" layoutY="375.0" prefHeight="39.0" prefWidth="259.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="117.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alias" wrappingWidth="281.4166259765625">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCiudad" alignment="CENTER" layoutX="430.0" layoutY="377.0" prefHeight="39.0" prefWidth="259.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="430.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciudad" wrappingWidth="281.4166259765625">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCalle" alignment="CENTER" layoutX="117.0" layoutY="488.0" prefHeight="39.0" prefWidth="259.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="117.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calle" wrappingWidth="281.4166259765625">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="769.0" layoutY="290.0" prefHeight="342.0" prefWidth="524.0">
+         <children>
+            <WebView fx:id="webViewMapa" prefHeight="410.0" prefWidth="531.0" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txtCoordenadas" alignment="CENTER" disable="true" layoutX="430.0" layoutY="489.0" prefHeight="39.0" prefWidth="259.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="430.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coordenadas" wrappingWidth="281.4166259765625">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="268.0" layoutY="586.0" mnemonicParsing="false" onAction="#anadirDireccion" prefHeight="36.0" prefWidth="275.0" style="-fx-background-radius: 100px; -fx-background-color: #ffffff;" text="Añadir direccion">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -193,23 +236,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="16.0" fitWidth="18.0" layoutX="254.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/ElementosApoyo/Desplegable.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="1004.0" layoutY="136.0" mnemonicParsing="false" onAction="#irDirecciones" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Direcciones" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView fitHeight="16.0" fitWidth="18.0" layoutX="1182.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/ElementosApoyo/Desplegable.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
