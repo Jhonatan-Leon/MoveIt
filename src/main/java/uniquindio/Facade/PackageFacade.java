@@ -15,7 +15,7 @@ public class PackageFacade {
         return instance;
     }
 
-    public List<Package> getAllPackages() throws ControllException.ErrorServer{
+    public List<Package> getAllPackages(){
         return PackageService.getAllPackage();
     }
 
@@ -23,7 +23,7 @@ public class PackageFacade {
         return PackageService.AddPackage(newPackage);
     }
 
-    public Package updatePackage(Package updatePackage) throws ControllException.ErrorServer{
+    public Package updatePackage(Package updatePackage) throws ControllException.PackageNotFound {
         return PackageService.updatePackage(updatePackage);
     }
 
