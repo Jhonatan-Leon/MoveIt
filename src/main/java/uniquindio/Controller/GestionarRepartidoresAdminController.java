@@ -4,20 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import uniquindio.Model.Gestion.GestionRepartidor;
+import uniquindio.Facade.AdminFacade;
 import uniquindio.Model.Repartidor;
 import uniquindio.Model.TipoDocumento;
 import uniquindio.Model.ClassBuilder.RepartidorBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GestionarRepartidoresAdminController {
+
 
     // ---- TABLA ----
     @FXML
     private TableView<Repartidor> tableRepartidores;
-
     @FXML
     private TableColumn<Repartidor, String> colId;
     @FXML
@@ -31,9 +31,9 @@ public class GestionarRepartidoresAdminController {
     @FXML
     private TableColumn<Repartidor, String> colNumeroDocumento;
     @FXML
-    private TableColumn<Repartidor, String> colZonaCobertura;
-    @FXML
     private TableColumn<Repartidor, Boolean> colEstado;
+    @FXML
+    private TableColumn<Repartidor, String> colZonaCobertura;
 
     // ---- CAMPOS DEL FORMULARIO ----
     @FXML
@@ -45,11 +45,11 @@ public class GestionarRepartidoresAdminController {
     @FXML
     private TextField txtNumeroDocumento;
     @FXML
-    private ChoiceBox<TipoDocumento> choiceTipoDocumento;
-    @FXML
     private TextField txtZonaCobertura;
     @FXML
-    private CheckBox chkEstado;
+    private ChoiceBox<TipoDocumento> choiceTipoDocumento;
+    @FXML
+    private CheckBox checkEstado;
 
     // ---- BOTONES ----
     @FXML
@@ -62,136 +62,122 @@ public class GestionarRepartidoresAdminController {
     private Button btnLimpiar;
 
     // ---- LISTA OBSERVABLE ----
-    private ObservableList<Repartidor> listaRepartidores;
+    private ObservableList<Repartidor> repartidoresObservable;
 
     @FXML
     public void initialize() {
-        // Inicializar ChoiceBox
-        choiceTipoDocumento.getItems().setAll(TipoDocumento.values());
+        // Inicializar choicebox de tipo de documento
+        choiceTipoDocumento.setItems(FXCollections.observableArrayList(TipoDocumento.values()));
 
-        // Inicializar columnas
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        colTipoDocumento.setCellValueFactory(new PropertyValueFactory<>("tipoDocumento"));
-        colNumeroDocumento.setCellValueFactory(new PropertyValueFactory<>("numeroDocumento"));
-        colZonaCobertura.setCellValueFactory(new PropertyValueFactory<>("zonaCobertura"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("activo"));
+        // Configurar columnas de la tabla
+        colId.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getId()));
+        colNombre.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreCompleto()));
+        colEmail.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEmail()));
+        colTelefono.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getTelefono()));
+        colTipoDocumento.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getTipoDocumento()));
+        colNumeroDocumento.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNumeroDocumento()));
+        colEstado.setCellValueFactory(data -> new javafx.beans.property.SimpleBooleanProperty(data.getValue().isEstado()).asObject());
+        colZonaCobertura.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getZonaCobertura()));
 
-        // Cargar tabla
-        cargarRepartidores();
+        // Cargar repartidores en la tabla
+        cargarTabla();
 
-        // Listener de selección
+        // Selección de tabla para llenar formulario
         tableRepartidores.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
             if (newSel != null) {
-                llenarFormulario(newSel);
+                cargarFormulario(newSel);
             }
         });
-
-        // Botones
-        btnCrear.setOnAction(e -> crearRepartidor());
-        btnActualizar.setOnAction(e -> actualizarRepartidor());
-        btnEliminar.setOnAction(e -> eliminarRepartidor());
-        btnLimpiar.setOnAction(e -> limpiarCampos());
     }
 
-    private void cargarRepartidores() {
-        List<Repartidor> repartidores = GestionRepartidor.getInstance().getlist();
-        listaRepartidores = FXCollections.observableArrayList(repartidores);
-        tableRepartidores.setItems(listaRepartidores);
+    private void cargarTabla() {
+        List<Repartidor> lista = AdminFacade.listarRepartidores();
+        repartidoresObservable = FXCollections.observableArrayList(lista);
+        tableRepartidores.setItems(repartidoresObservable);
     }
 
-    private void llenarFormulario(Repartidor r) {
+    private void cargarFormulario(Repartidor r) {
         txtNombre.setText(r.getNombreCompleto());
         txtEmail.setText(r.getEmail());
         txtTelefono.setText(r.getTelefono());
         txtNumeroDocumento.setText(r.getNumeroDocumento());
-        choiceTipoDocumento.setValue(r.getTipoDocumento());
         txtZonaCobertura.setText(r.getZonaCobertura());
-        chkEstado.setSelected(r.isEstado());
+        choiceTipoDocumento.setValue(r.getTipoDocumento());
+        checkEstado.setSelected(r.isEstado());
     }
 
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
-
-    // ---- MÉTODOS CRUD ----
     @FXML
     private void crearRepartidor() {
-        if (txtNombre.getText().isEmpty() || txtEmail.getText().isEmpty() || choiceTipoDocumento.getValue() == null || txtNumeroDocumento.getText().isEmpty()) {
-            mostrarAlerta("Advertencia", "Complete los campos obligatorios", Alert.AlertType.WARNING);
-            return;
+        try {
+            RepartidorBuilder builder = new RepartidorBuilder(
+                    "R" + System.currentTimeMillis(),
+                    txtNombre.getText(),
+                    txtEmail.getText(),
+                    "default123"
+            ).withtelefono(txtTelefono.getText())
+                    .withtipoDocumento(choiceTipoDocumento.getValue())
+                    .withnumeroDocumento(txtNumeroDocumento.getText())
+                    .withestado(checkEstado.isSelected())
+                    .withzonaCobertura(txtZonaCobertura.getText());
+
+            Repartidor nuevo = AdminFacade.createRepartidor(builder.build());
+
+            repartidoresObservable.add(nuevo);
+            limpiarCampos();
+            mostrarAlerta("Éxito", "Repartidor creado correctamente.", Alert.AlertType.INFORMATION);
+
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo crear el repartidor: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-
-        RepartidorBuilder builder = new RepartidorBuilder(
-                generarId(),
-                txtNombre.getText(),
-                txtEmail.getText(),
-                "1234" // password temporal
-        );
-
-        builder.withtelefono(txtTelefono.getText())
-                .withtipoDocumento(choiceTipoDocumento.getValue())
-                .withnumeroDocumento(txtNumeroDocumento.getText())
-                .withzonaCobertura(txtZonaCobertura.getText())
-                .withestado(chkEstado.isSelected());
-
-        Repartidor nuevo = builder.build();
-        GestionRepartidor.getInstance().addRepartidor(nuevo);
-
-        cargarRepartidores();
-        limpiarCampos();
-        mostrarAlerta("Éxito", "Repartidor creado correctamente", Alert.AlertType.INFORMATION);
     }
 
     @FXML
     private void actualizarRepartidor() {
         Repartidor seleccionado = tableRepartidores.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
-            mostrarAlerta("Advertencia", "Seleccione un repartidor", Alert.AlertType.WARNING);
+            mostrarAlerta("Atención", "Seleccione un repartidor para actualizar.", Alert.AlertType.WARNING);
             return;
         }
+        try {
+            RepartidorBuilder builder = new RepartidorBuilder(
+                    seleccionado.getId(),
+                    txtNombre.getText(),
+                    txtEmail.getText(),
+                    seleccionado.getPassword() // mantener contraseña
+            ).withtelefono(txtTelefono.getText())
+                    .withtipoDocumento(choiceTipoDocumento.getValue())
+                    .withnumeroDocumento(txtNumeroDocumento.getText())
+                    .withestado(checkEstado.isSelected())
+                    .withzonaCobertura(txtZonaCobertura.getText());
 
-        RepartidorBuilder builder = new RepartidorBuilder(
-                seleccionado.getId(),
-                txtNombre.getText(),
-                txtEmail.getText(),
-                "1234"
-        );
+            Repartidor actualizado = AdminFacade.updateRepartidor(builder.build()); // si agregas build() -> builder.build()
 
-        builder.withtelefono(txtTelefono.getText())
-                .withtipoDocumento(choiceTipoDocumento.getValue())
-                .withnumeroDocumento(txtNumeroDocumento.getText())
-                .withzonaCobertura(txtZonaCobertura.getText())
-                .withestado(chkEstado.isSelected());
+            int index = repartidoresObservable.indexOf(seleccionado);
+            repartidoresObservable.set(index, actualizado);
+            limpiarCampos();
+            mostrarAlerta("Éxito", "Repartidor actualizado correctamente.", Alert.AlertType.INFORMATION);
 
-        Repartidor actualizado = builder.build();
-        GestionRepartidor.getInstance().updateRepartidor(seleccionado.getId(), actualizado);
-
-        cargarRepartidores();
-        mostrarAlerta("Éxito", "Repartidor actualizado correctamente", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo actualizar el repartidor: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void eliminarRepartidor() {
         Repartidor seleccionado = tableRepartidores.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
-            mostrarAlerta("Advertencia", "Seleccione un repartidor", Alert.AlertType.WARNING);
+            mostrarAlerta("Atención", "Seleccione un repartidor para eliminar.", Alert.AlertType.WARNING);
             return;
         }
-
-        boolean eliminado = GestionRepartidor.getInstance().DeleteRepatidor(seleccionado.getId());
-        if (eliminado) {
-            cargarRepartidores();
-            limpiarCampos();
-            mostrarAlerta("Éxito", "Repartidor eliminado correctamente", Alert.AlertType.INFORMATION);
-        } else {
-            mostrarAlerta("Error", "No se pudo eliminar el repartidor", Alert.AlertType.ERROR);
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "¿Está seguro de eliminar este repartidor?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = confirm.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.YES) {
+            boolean eliminado = AdminFacade.deleteRepartidor(seleccionado.getId());
+            if (eliminado) {
+                repartidoresObservable.remove(seleccionado);
+                limpiarCampos();
+                mostrarAlerta("Éxito", "Repartidor eliminado correctamente.", Alert.AlertType.INFORMATION);
+            }
         }
     }
 
@@ -201,13 +187,17 @@ public class GestionarRepartidoresAdminController {
         txtEmail.clear();
         txtTelefono.clear();
         txtNumeroDocumento.clear();
-        choiceTipoDocumento.setValue(null);
         txtZonaCobertura.clear();
-        chkEstado.setSelected(false);
+        choiceTipoDocumento.setValue(null);
+        checkEstado.setSelected(true);
         tableRepartidores.getSelectionModel().clearSelection();
     }
 
-    private String generarId() {
-        return "R" + System.currentTimeMillis();
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

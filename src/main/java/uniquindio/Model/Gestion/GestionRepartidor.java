@@ -25,9 +25,9 @@ public class GestionRepartidor {
         return new ArrayList<>(listaRepartidor);
     }
 
-    public boolean addRepartidor(Repartidor newUser) {
+    public Repartidor addRepartidor(Repartidor newUser) {
         listaRepartidor.add(newUser);
-        return true;
+        return newUser;
     }
 
     public Repartidor updateRepartidor(String Id, Repartidor updateUser) {

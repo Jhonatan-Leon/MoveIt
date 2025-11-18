@@ -28,7 +28,7 @@ public class AdminFacade {
         return AdminServices.eliminarRepartidor(Id);
     }
 
-    public static boolean createRepartidor(Repartidor repartidor){
+    public static Repartidor createRepartidor(Repartidor repartidor){
         return AdminServices.crearRepartidor(repartidor);
     }
 

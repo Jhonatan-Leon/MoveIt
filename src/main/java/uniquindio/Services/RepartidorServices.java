@@ -41,7 +41,7 @@ public class RepartidorServices {
         return gestion.DeleteRepatidor(Id);
     }
 
-    public static boolean AddRepartidor(Repartidor repartidor){
+    public static Repartidor AddRepartidor(Repartidor repartidor){
         return gestion.addRepartidor(repartidor);
     }
 }

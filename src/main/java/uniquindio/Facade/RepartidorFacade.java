@@ -27,7 +27,7 @@ public class RepartidorFacade {
         return RepartidorServices.updateRepartidor(updateUser.getId(), updateUser);
     }
 
-    public boolean addRepartidor(Repartidor newUser){
+    public Repartidor addRepartidor(Repartidor newUser){
         return RepartidorServices.AddRepartidor(newUser);
     }
 

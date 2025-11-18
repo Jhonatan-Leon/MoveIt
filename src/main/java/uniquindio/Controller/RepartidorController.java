@@ -17,7 +17,7 @@ public class RepartidorController {
         }
     }
 
-    public boolean CreateRepartidor(Repartidor rep) throws ControllException.UserCreate {
+    public Repartidor CreateRepartidor(Repartidor rep) throws ControllException.UserCreate {
         try{
             return repartidorFacade.addRepartidor(rep);
         }catch (Exception e) {

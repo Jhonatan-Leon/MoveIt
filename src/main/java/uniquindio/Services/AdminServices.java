@@ -59,7 +59,7 @@ public class AdminServices {
                 .collect(Collectors.toList());
     }
 
-    public static boolean crearRepartidor(Repartidor repartidor) {
+    public static Repartidor crearRepartidor(Repartidor repartidor) {
         return RepartidorServices.AddRepartidor(repartidor);
     }
 
