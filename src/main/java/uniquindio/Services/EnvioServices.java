@@ -175,7 +175,7 @@ public class EnvioServices {
         
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaCreacion);
-        calendar.add(Calendar.MINUTE, cotizacionDTO.getTiempoDemora());
+        calendar.add(Calendar.MINUTE, (int) Math.round(cotizacionDTO.getTiempoDemora()));
         Date fechaEstimada = calendar.getTime();
 
         EnvioBuilder builder = new EnvioBuilder(
@@ -195,7 +195,7 @@ public class EnvioServices {
                .withPrioridad(prioridad)
                .withServiciosAdicionales(cotizacionDTO.getServiciosAdicionales())
                .withDistancia(cotizacionDTO.getDistanciaKm())
-               .withTiempoDemora(cotizacionDTO.getTiempoDemora());
+               .withTiempoDemora((int) cotizacionDTO.getTiempoDemora());
         
         Envio nuevoEnvio = new Envio(builder);
         
@@ -235,11 +235,11 @@ public class EnvioServices {
         }
 
         Tarifa tarifa = TarifaService.calcularTarifa(
-            distanciaKm,
-            pesoTotal,
-            volumenTotal,
-            tipoPrioridad,
-            serviciosAdicionales
+                distanciaKm,
+                pesoTotal,
+                volumenTotal,
+                tipoPrioridad,
+                serviciosAdicionales
         );
 
         double costoTotal = TarifaService.obtenerCostoTotal(tarifa);

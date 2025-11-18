@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CotizacionDTO {
     private double distanciaKm;
-    private int tiempoDemorado;
+    private double tiempoDemorado;
     private String prioridad;
     private List<PaqueteDTO> paquetes;
     private List<String> serviciosAdicionales;
@@ -14,10 +14,21 @@ public class CotizacionDTO {
     private Direccion direccionDestino;
     private double costoCalculado;
 
+    public CotizacionDTO(double distanciaKm, double tiempoDemorado, String prioridad, List<PaqueteDTO> paquetes, List<String> serviciosAdicionales, Direccion direccionOrigen, Direccion direccionDestino, double costoCalculado) {
+        this.distanciaKm = distanciaKm;
+        this.tiempoDemorado = tiempoDemorado;
+        this.prioridad = prioridad;
+        this.paquetes = paquetes;
+        this.serviciosAdicionales = serviciosAdicionales;
+        this.direccionOrigen = direccionOrigen;
+        this.direccionDestino = direccionDestino;
+        this.costoCalculado = costoCalculado;
+    }
+
     public double getDistanciaKm() { return distanciaKm; }
     public void setDistanciaKm(double distanciaKm) { this.distanciaKm = distanciaKm; }
 
-    public int getTiempoDemora() { return tiempoDemorado; }
+    public double getTiempoDemora() { return tiempoDemorado; }
     public void setTiempoDemoraMinutos(int tiempoDemoraMinutos) { this.tiempoDemorado = tiempoDemoraMinutos; }
 
     public String getPrioridad() { return prioridad; }

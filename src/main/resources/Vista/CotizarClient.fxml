@@ -2,6 +2,10 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -11,6 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.CotizarClientController">
    <children>
@@ -99,6 +104,206 @@
             <Image url="@../Images/ElementosApoyo/Desplegable.png" />
          </image>
       </ImageView>
+      <Text fill="WHITE" layoutX="541.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mi cotización" textAlignment="CENTER" wrappingWidth="381.4166259765625">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="102.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Informacion del Paquete" wrappingWidth="457.4166259765625">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="125.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el peso(kg):" wrappingWidth="219.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtPeso" alignment="CENTER" layoutX="123.0" layoutY="413.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="125.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el ancho(cm):" wrappingWidth="219.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtAncho" alignment="CENTER" layoutX="123.0" layoutY="506.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="430.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el largo(cm):" wrappingWidth="219.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtLargo" alignment="CENTER" layoutX="428.0" layoutY="413.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="430.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el alto(cm)" wrappingWidth="219.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtAlto" alignment="CENTER" layoutX="428.0" layoutY="506.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button layoutX="131.0" layoutY="612.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Confirmar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TableView fx:id="tvListPaquetes" layoutX="768.0" layoutY="279.0" prefHeight="437.0" prefWidth="486.0">
+        <columns>
+          <TableColumn fx:id="colPeso" prefWidth="134.0" text="Peso" />
+          <TableColumn fx:id="colLargo" prefWidth="130.0" text="Largo" />
+            <TableColumn fx:id="colAncho" prefWidth="111.0" text="Ancho" />
+            <TableColumn fx:id="colAlto" prefWidth="110.0" text="Alto" />
+        </columns>
+      </TableView>
+      <Button layoutX="428.0" layoutY="612.0" mnemonicParsing="false" onAction="#agregarPaquete" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Agregar paquete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <AnchorPane fx:id="anchorCoti" layoutX="74.0" layoutY="183.0" prefHeight="593.0" prefWidth="1300.0" visible="false">
+         <children>
+            <Rectangle fx:id="anchorCotizacionDTO" arcHeight="100.0" arcWidth="100.0" fill="#020d26" height="574.0" layoutX="7.0" layoutY="6.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1268.0" />
+            <WebView fx:id="webView" layoutX="38.0" layoutY="53.0" prefHeight="480.0" prefWidth="486.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </WebView>
+            <TextField fx:id="txtDistancia" alignment="CENTER" disable="true" layoutX="948.0" layoutY="259.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtDuracion" alignment="CENTER" disable="true" layoutX="948.0" layoutY="183.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtInicio" alignment="CENTER" disable="true" layoutX="948.0" layoutY="328.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFin" alignment="CENTER" disable="true" layoutX="948.0" layoutY="405.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Text fill="WHITE" layoutX="948.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distancia(km):" wrappingWidth="219.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="943.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duración de trayecto(mins):" wrappingWidth="272.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="948.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coordenadas Inicio" wrappingWidth="219.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="948.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coordenadas Fin:" wrappingWidth="219.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#071d36" height="145.0" layoutX="591.0" layoutY="96.0" stroke="TRANSPARENT" strokeType="INSIDE" width="298.0" />
+            <CheckBox fx:id="cbSeguro" layoutX="604.0" layoutY="110.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="205.0" text="Seguro" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="cbFragil" layoutX="604.0" layoutY="153.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="205.0" text="Fragil" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="cbFirma" layoutX="604.0" layoutY="196.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="205.0" text="Firma Requerida" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <Text fill="WHITE" layoutX="698.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos de mi cotizacion" textAlignment="CENTER" wrappingWidth="428.4166259765625">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="591.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elija los servicios que desee:" wrappingWidth="280.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="ChBxPrioridad" layoutX="948.0" layoutY="112.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" />
+            <Text fill="WHITE" layoutX="946.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escoja la prioridad:" wrappingWidth="280.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="618.0" layoutY="489.0" mnemonicParsing="false" onAction="#cotizar" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Cotizar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ChoiceBox fx:id="chBxDireccionInicio" layoutX="593.0" layoutY="286.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff; -fx-mark-color: #ffffff;" />
+            <Text fill="WHITE" layoutX="591.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección inicio" wrappingWidth="280.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="chBxDireccionFin" layoutX="593.0" layoutY="358.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" />
+            <Text fill="WHITE" layoutX="591.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección fin" wrappingWidth="280.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtCosto" alignment="CENTER" disable="true" layoutX="593.0" layoutY="432.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Text fill="WHITE" layoutX="588.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:" wrappingWidth="272.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="973.0" layoutY="489.0" mnemonicParsing="false" onAction="#crearPedido" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Crear pedido" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="anchorOpcionesUsuario" layoutX="1059.0" layoutY="62.0" prefHeight="200.0" prefWidth="261.0" visible="false">
          <children>
             <Rectangle arcHeight="100.0" arcWidth="80.0" fill="#0f2846" height="152.0" layoutY="45.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 100;" width="262.0" />
