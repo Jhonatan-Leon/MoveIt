@@ -1,5 +1,6 @@
 package uniquindio.Services;
 
+import uniquindio.Errors.ControllException;
 import uniquindio.Model.Gestion.GestionRepartidor;
 import uniquindio.Model.Repartidor;
 
@@ -26,6 +27,14 @@ public class RepartidorServices {
         }
 
         return null;
+    }
+
+    public static Repartidor actualizarDisponibilidad(String id, boolean disponible) throws ControllException.UserNotFound {
+        Repartidor repartidor = gestion.actualizarDisponibilidad(id, disponible);
+        if(repartidor == null){
+            throw new ControllException.UserNotFound("Repartidor no encontrado con ID: " + id);
+        }
+        return repartidor;
     }
 
     public static boolean deleteRepartidor(String Id){
