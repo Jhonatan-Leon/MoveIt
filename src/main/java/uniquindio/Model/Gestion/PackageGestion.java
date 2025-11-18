@@ -33,7 +33,7 @@ public class PackageGestion {
                 p.setPeso(updatePackage.getPeso());
                 p.setAlto(updatePackage.getAlto());
                 p.setAncho(updatePackage.getAncho());
-                p.setVolumen(updatePackage.getVolumen());
+                p.setLargo(updatePackage.getLargo());
             }
         }
 

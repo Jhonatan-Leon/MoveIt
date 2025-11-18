@@ -7,14 +7,14 @@ public class Package {
     private float peso;
     private float alto;
     private float ancho;
-    private float volumen;
+    private float largo;
 
     public Package(PaqueteBuilder builder) {
         this.IdPaquete = builder.IdPaquete;
         this.peso = builder.peso;
         this.alto = builder.alto;
         this.ancho = builder.ancho;
-        this.volumen = builder.volumen;
+        this.largo = builder.largo;
     }
 
     public String getIdPaquete() {
@@ -49,11 +49,13 @@ public class Package {
         this.ancho = ancho;
     }
 
-    public float getVolumen() {
-        return volumen;
+    public float getLargo() {
+        return largo;
     }
 
-    public void setVolumen(float volumen) {
-        this.volumen = volumen;
+    public void setLargo(float largo) {
+        this.largo = largo;
     }
+
+
 }

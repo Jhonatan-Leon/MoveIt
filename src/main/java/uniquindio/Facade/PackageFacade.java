@@ -27,7 +27,7 @@ public class PackageFacade {
         return PackageService.updatePackage(updatePackage);
     }
 
-    public boolean deletePackage(String Id) throws ControllException.ErrorServer{
+    public boolean deletePackage(String Id) throws ControllException.PackageNotFound{
         return PackageService.DeletePackage(Id);
     }
 
