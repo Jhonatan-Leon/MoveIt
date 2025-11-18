@@ -39,6 +39,8 @@ public class GestionEnvios {
                 e.setListpaquete(updateEnvio.getListpaquete());
                 e.setFechaEstimada(updateEnvio.getFechaEstimada());
                 e.setTipoDireccion(updateEnvio.getTipoDireccion());
+                e.setCosto(updateEnvio.getCosto());
+                return e;
             }
         }
         return null;
