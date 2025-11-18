@@ -13,15 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ReportService {
-
-    /**
-     * Genera un PDF con los envíos proporcionados.
-     *
-     * @param envios     Lista de envíos a incluir en el PDF.
-     * @param rutaArchivo Ruta donde se guardará el PDF.
-     * @throws DocumentException Si ocurre un error al generar el documento.
-     * @throws IOException       Si ocurre un error al escribir el archivo.
-     */
     public static void exportarEnviosPDF(List<Envio> envios, String rutaArchivo)
             throws DocumentException, IOException {
 
