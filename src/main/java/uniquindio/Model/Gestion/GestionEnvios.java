@@ -59,4 +59,12 @@ public class GestionEnvios {
     public static List<Envio> Envios(){
         return  new ArrayList<>(listaEnvio);
     }
+
+    private int contadorIdEnvio = 1;
+
+    public int generarIdEnvio() {
+        return contadorIdEnvio++;
+    }
+
+
 }

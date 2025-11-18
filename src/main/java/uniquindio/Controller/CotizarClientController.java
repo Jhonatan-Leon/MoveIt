@@ -13,12 +13,16 @@ import netscape.javascript.JSObject;
 import uniquindio.Errors.ControllException;
 import uniquindio.Helper.Sesion;
 import uniquindio.Mappers.ClientMapper;
+import uniquindio.Mappers.PaqueteMapper;
+import uniquindio.Model.ClassBuilder.EnvioBuilder;
 import uniquindio.Model.Client;
 import uniquindio.Model.DTO.CotizacionDTO;
 import uniquindio.Model.DTO.PaqueteDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Direccion;
 import uniquindio.Model.Envio;
+import uniquindio.Model.Gestion.GestionEnvios;
+import uniquindio.Model.TipoEstado;
 import uniquindio.Services.ReportService;
 import uniquindio.Utils.JSBrigeRuta;
 import uniquindio.Utils.JavaFxAux;
@@ -26,6 +30,7 @@ import uniquindio.Utils.JavaFxAux;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CotizarClientController {
@@ -68,6 +73,8 @@ public class CotizarClientController {
     @FXML private ChoiceBox<Direccion> chBxDireccionFin;
     @FXML private TextField txtCosto;
     @FXML private AnchorPane anchorCoti;
+    @FXML private TextField txtDescripcion;
+    @FXML private TableColumn<PaqueteDTO, String> colDescripcion;
 
 
     public void initialize () throws URISyntaxException, ControllException.UserNotFound {
@@ -78,6 +85,7 @@ public class CotizarClientController {
 
         // Asociar lista observable al TableView
         tvListPaquetes.setItems(listPaqueteDTO);
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         colPeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
         colLargo.setCellValueFactory(new PropertyValueFactory<>("largo"));
         colAncho.setCellValueFactory(new PropertyValueFactory<>("ancho"));
@@ -170,7 +178,7 @@ public class CotizarClientController {
 
     public void agregarPaquete () {
         try {
-            PaqueteDTO paqueteDTO = new PaqueteDTO(
+            PaqueteDTO paqueteDTO = new PaqueteDTO(txtDescripcion.getText(),
                     Double.parseDouble(txtPeso.getText()),
                     Double.parseDouble(txtLargo.getText()),
                     Double.parseDouble(txtAncho.getText()),
@@ -180,6 +188,7 @@ public class CotizarClientController {
             listPaqueteDTO.add(paqueteDTO); // Actualiza TableView automáticamente
 
             // Limpiar campos
+            txtDescripcion.clear();
             txtPeso.clear();
             txtLargo.clear();
             txtAncho.clear();
@@ -194,7 +203,73 @@ public class CotizarClientController {
         return new ArrayList<>(listPaqueteDTO);
     }
 
-    public void crearPedido () {
+    public void crearEnvio() {
+        try {
+
+
+            if (ChBxPrioridad.getValue() == null) {
+                throw new Exception("Debe seleccionar una prioridad.");
+            }
+            if (chBxDireccionInicio.getValue() == null || chBxDireccionFin.getValue() == null) {
+                throw new Exception("Debe seleccionar las direcciones de inicio y destino.");
+            }
+            if (listPaqueteDTO.isEmpty()) {
+                throw new Exception("Debe agregar al menos un paquete.");
+            }
+            if (txtCosto.getText().isEmpty()) {
+                throw new Exception("Primero debe cotizar antes de crear el pedido.");
+            }
+
+
+            int nuevoId = GestionEnvios.getInstance().generarIdEnvio();
+            String tipoDireccion = chBxDireccionFin.getValue().toString();
+            List<PaqueteDTO> listaPaquetesDTO = getPaquetes();
+            double costoTotal = Double.parseDouble(txtCosto.getText());
+
+            ArrayList<uniquindio.Model.Package> listaPaquetes = new ArrayList<>();
+            for (PaqueteDTO dto : listaPaquetesDTO) {
+                listaPaquetes.add(PaqueteMapper.toEntity(dto));
+            }
+
+            Direccion origen = chBxDireccionInicio.getValue();
+            Direccion destino = chBxDireccionFin.getValue();
+
+            Date fechaCreacion = new Date();
+
+            int minutos = (int) Math.round(Double.parseDouble(txtDuracion.getText()));
+            Date fechaEstimada = new Date(fechaCreacion.getTime() + (minutos * 60L * 1000));
+
+
+            EnvioBuilder builder = new EnvioBuilder(
+                    nuevoId,
+                    tipoDireccion,
+                    listaPaquetes,
+                    TipoEstado.SOLICITADO
+            );
+
+            builder.withDirecciones(origen, destino)
+                    .withCosto(costoTotal)
+                    .withfechaCreacion(fechaCreacion)
+                    .withfechaEstimada(fechaEstimada);
+
+            Envio envio = new Envio(builder);
+
+            GestionEnvios.getInstance().AddEnvio(envio);
+            Client client = ClientMapper.sesionToEntity(user);
+            client.getListEnvio().add(envio);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Pedido creado exitosamente");
+            alert.setContentText("El envío #" + nuevoId + " fue registrado correctamente.");
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al crear el pedido");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 
     //-----------------------------------------

@@ -1,5 +1,6 @@
 package uniquindio.Model.ClassBuilder;
 
+import uniquindio.Model.Repartidor;
 import uniquindio.Model.TipoDocumento;
 
 public class RepartidorBuilder {
@@ -46,6 +47,11 @@ public class RepartidorBuilder {
         this.zonaCobertura = zonaCobertura;
         return this;
     }
+
+    public Repartidor build() {
+        return new Repartidor(this); // necesita que Repartidor tenga un constructor que reciba RepartidorBuilder
+    }
+
 
 }
 

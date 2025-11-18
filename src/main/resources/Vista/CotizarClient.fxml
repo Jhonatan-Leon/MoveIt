@@ -114,47 +114,47 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="125.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el peso(kg):" wrappingWidth="219.0">
+      <Text fill="WHITE" layoutX="135.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el peso(kg):" wrappingWidth="219.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtPeso" alignment="CENTER" layoutX="123.0" layoutY="413.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+      <TextField fx:id="txtPeso" alignment="CENTER" layoutX="133.0" layoutY="468.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Text fill="WHITE" layoutX="125.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el ancho(cm):" wrappingWidth="219.0">
+      <Text fill="WHITE" layoutX="135.0" layoutY="547.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el ancho(cm):" wrappingWidth="219.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtAncho" alignment="CENTER" layoutX="123.0" layoutY="506.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+      <TextField fx:id="txtAncho" alignment="CENTER" layoutX="133.0" layoutY="561.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Text fill="WHITE" layoutX="430.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el largo(cm):" wrappingWidth="219.0">
+      <Text fill="WHITE" layoutX="440.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el largo(cm):" wrappingWidth="219.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtLargo" alignment="CENTER" layoutX="428.0" layoutY="413.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+      <TextField fx:id="txtLargo" alignment="CENTER" layoutX="438.0" layoutY="468.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Text fill="WHITE" layoutX="430.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el alto(cm)" wrappingWidth="219.0">
+      <Text fill="WHITE" layoutX="440.0" layoutY="547.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el alto(cm)" wrappingWidth="219.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtAlto" alignment="CENTER" layoutX="428.0" layoutY="506.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+      <TextField fx:id="txtAlto" alignment="CENTER" layoutX="438.0" layoutY="561.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button layoutX="131.0" layoutY="612.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Confirmar" textFill="WHITE">
+      <Button layoutX="137.0" layoutY="652.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Confirmar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -165,15 +165,26 @@
             <DropShadow />
          </effect>
       </Button>
-      <TableView fx:id="tvListPaquetes" layoutX="768.0" layoutY="279.0" prefHeight="437.0" prefWidth="486.0">
+      <Text fill="WHITE" layoutX="132.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa una descripcion corta:" wrappingWidth="316.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtDescripcion" alignment="CENTER" layoutX="136.0" layoutY="373.0" prefHeight="39.0" prefWidth="561.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="tvListPaquetes" layoutX="752.0" layoutY="279.0" prefHeight="437.0" prefWidth="577.0">
         <columns>
-          <TableColumn fx:id="colPeso" prefWidth="134.0" text="Peso" />
-          <TableColumn fx:id="colLargo" prefWidth="130.0" text="Largo" />
-            <TableColumn fx:id="colAncho" prefWidth="111.0" text="Ancho" />
-            <TableColumn fx:id="colAlto" prefWidth="110.0" text="Alto" />
+          <TableColumn fx:id="colDescripcion" prefWidth="225.0" text="Descripcion" />
+            <TableColumn fx:id="colPeso" prefWidth="82.0" text="Peso" />
+          <TableColumn fx:id="colLargo" prefWidth="91.0" text="Largo" />
+            <TableColumn fx:id="colAncho" prefWidth="96.0" text="Ancho" />
+            <TableColumn fx:id="colAlto" prefWidth="82.0" text="Alto" />
         </columns>
       </TableView>
-      <Button layoutX="428.0" layoutY="612.0" mnemonicParsing="false" onAction="#agregarPaquete" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Agregar paquete" textFill="WHITE">
+      <Button layoutX="434.0" layoutY="652.0" mnemonicParsing="false" onAction="#agregarPaquete" prefHeight="45.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Agregar paquete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -272,29 +283,29 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ChoiceBox fx:id="chBxDireccionInicio" layoutX="593.0" layoutY="286.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff; -fx-mark-color: #ffffff;" />
-            <Text fill="WHITE" layoutX="591.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección inicio" wrappingWidth="280.0">
+            <ChoiceBox fx:id="chBxDireccionInicio" layoutX="593.0" layoutY="269.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff; -fx-mark-color: #ffffff;" />
+            <Text fill="WHITE" layoutX="591.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección inicio" wrappingWidth="280.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="chBxDireccionFin" layoutX="593.0" layoutY="358.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" />
-            <Text fill="WHITE" layoutX="591.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección fin" wrappingWidth="280.0">
+            <ChoiceBox fx:id="chBxDireccionFin" layoutX="593.0" layoutY="339.0" prefHeight="36.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" />
+            <Text fill="WHITE" layoutX="591.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección fin" wrappingWidth="280.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="txtCosto" alignment="CENTER" disable="true" layoutX="593.0" layoutY="432.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
+            <TextField fx:id="txtCosto" alignment="CENTER" disable="true" layoutX="593.0" layoutY="405.0" prefHeight="24.0" prefWidth="262.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846; -fx-text-fill: #ffffff;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Text fill="WHITE" layoutX="588.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:" wrappingWidth="272.0">
+            <Text fill="WHITE" layoutX="588.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:" wrappingWidth="272.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <Button layoutX="973.0" layoutY="489.0" mnemonicParsing="false" onAction="#crearPedido" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Crear pedido" textFill="WHITE">
+            <Button layoutX="973.0" layoutY="489.0" mnemonicParsing="false" onAction="#crearEnvio" prefHeight="39.0" prefWidth="212.0" style="-fx-background-radius: 100px; -fx-background-color: #0f2846;" text="Crear envio" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
