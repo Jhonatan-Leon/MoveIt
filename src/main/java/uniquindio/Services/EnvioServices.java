@@ -113,8 +113,7 @@ public class EnvioServices {
 
         // PATRÓN: Adapter - Convierte String a TipoPrioridad
         TipoPrioridad prioridad = PrioridadConverter.convertir(cotizacionDTO.getPrioridad());
-        
-        // PATRÓN: Adapter - Convierte PaqueteDTO a Package
+
         List<Package> paquetes = PackageAdapter.adaptarLista(cotizacionDTO.getPaquetes());
         
         // Calcular peso y volumen total
@@ -163,6 +162,7 @@ public class EnvioServices {
         }
 
         CotizacionDTO cotizacionCompleta = CotizarEnvio(cotizacionDTO);
+        TipoPrioridad prioridad = PrioridadConverter.convertir(cotizacionDTO.getPrioridad());
 
         int idEnvio = EnvioIdGenerator.generarIdEnvio();
         List<Package> paquetes = PackageAdapter.adaptarLista(cotizacionDTO.getPaquetes());
@@ -191,7 +191,11 @@ public class EnvioServices {
         
         builder.withCosto(cotizacionCompleta.getCostoCalculado())
                .withfechaCreacion(fechaCreacion)
-               .withfechaEstimada(fechaEstimada);
+               .withfechaEstimada(fechaEstimada)
+               .withPrioridad(prioridad)
+               .withServiciosAdicionales(cotizacionDTO.getServiciosAdicionales())
+               .withDistancia(cotizacionDTO.getDistanciaKm())
+               .withTiempoDemora(cotizacionDTO.getTiempoDemora());
         
         Envio nuevoEnvio = new Envio(builder);
         
