@@ -14,6 +14,7 @@ public class RepartidorBuilder {
     public String numeroDocumento = "";
     public boolean estado = true;
     public String zonaCobertura = "";
+    public boolean disponible = true;
 
     public RepartidorBuilder(String id, String nombreCompleto, String email, String password) {
         this.id = id;
@@ -45,6 +46,11 @@ public class RepartidorBuilder {
 
     public RepartidorBuilder withzonaCobertura(String zonaCobertura) {
         this.zonaCobertura = zonaCobertura;
+        return this;
+    }
+
+    public RepartidorBuilder withDisponibilidad(boolean disponible) {
+        this.disponible = disponible;
         return this;
     }
 

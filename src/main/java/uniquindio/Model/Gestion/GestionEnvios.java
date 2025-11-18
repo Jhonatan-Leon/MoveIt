@@ -40,6 +40,15 @@ public class GestionEnvios {
                 e.setFechaEstimada(updateEnvio.getFechaEstimada());
                 e.setTipoDireccion(updateEnvio.getTipoDireccion());
                 e.setCosto(updateEnvio.getCosto());
+                e.setRepartidor(updateEnvio.getRepartidor());
+                e.setDireccionOrigen(updateEnvio.getDireccionOrigen());
+                e.setDireccionDestino(updateEnvio.getDireccionDestino());
+                e.setPrioridad(updateEnvio.getPrioridad());
+                e.setServiciosAdicionales(updateEnvio.getServiciosAdicionales());
+                e.setDistanciaKm(updateEnvio.getDistanciaKm());
+                e.setTiempoDemoradoMin(updateEnvio.getTiempoDemoradoMin());
+                e.setFechaEntregaReal(updateEnvio.getFechaEntregaReal());
+                e.setUltimaIncidencia(updateEnvio.getUltimaIncidencia());
                 return e;
             }
         }

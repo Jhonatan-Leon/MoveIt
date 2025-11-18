@@ -2,10 +2,14 @@ package uniquindio.Model.ClassBuilder;
 
 import uniquindio.Model.Direccion;
 import uniquindio.Model.Package;
+import uniquindio.Model.Repartidor;
 import uniquindio.Model.TipoEstado;
+import uniquindio.Model.TipoPrioridad;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * PATRÓN: Builder (Creacional)
@@ -29,9 +33,16 @@ public class EnvioBuilder {
     public Direccion direccionDestino;
     public ArrayList<Package> listpaquete;
     public TipoEstado estado;
+    public Repartidor repartidor;
     public double Costo;
     public Date fechaCreación;
     public Date fechaEstimada;
+    public Date fechaEntregaReal;
+    public TipoPrioridad prioridad;
+    public List<String> serviciosAdicionales;
+    public double distanciaKm;
+    public int tiempoDemoradoMin;
+    public String ultimaIncidencia;
 
     public EnvioBuilder (int IdEnvio, String tipoDireccion, ArrayList<Package> listpaquete, TipoEstado estado){
         this.IdEnvio = IdEnvio;
@@ -42,6 +53,7 @@ public class EnvioBuilder {
         } else {
             this.listpaquete = new ArrayList<>();
         }
+        this.serviciosAdicionales = Collections.emptyList();
     }
     
     public EnvioBuilder withDirecciones(Direccion origen, Direccion destino) {
@@ -61,6 +73,45 @@ public class EnvioBuilder {
 
     public void AgregarPaquete(Package paquete){
         listpaquete.add(paquete);
+    }
+
+    public EnvioBuilder withRepartidor(Repartidor repartidor){
+        this.repartidor = repartidor;
+        return this;
+    }
+
+    public EnvioBuilder withPrioridad(TipoPrioridad prioridad){
+        this.prioridad = prioridad;
+        return this;
+    }
+
+    public EnvioBuilder withServiciosAdicionales(List<String> servicios){
+        if (servicios == null) {
+            this.serviciosAdicionales = Collections.emptyList();
+        } else {
+            this.serviciosAdicionales = new ArrayList<>(servicios);
+        }
+        return this;
+    }
+
+    public EnvioBuilder withDistancia(double distanciaKm){
+        this.distanciaKm = distanciaKm;
+        return this;
+    }
+
+    public EnvioBuilder withTiempoDemora(int minutos){
+        this.tiempoDemoradoMin = minutos;
+        return this;
+    }
+
+    public EnvioBuilder withFechaEntregaReal(Date fechaEntrega){
+        this.fechaEntregaReal = fechaEntrega;
+        return this;
+    }
+
+    public EnvioBuilder withIncidencia(String incidencia){
+        this.ultimaIncidencia = incidencia;
+        return this;
     }
 
     public EnvioBuilder withfechaCreacion(Date fechaCreacion){

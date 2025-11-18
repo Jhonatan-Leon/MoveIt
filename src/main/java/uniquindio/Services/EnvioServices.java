@@ -127,11 +127,11 @@ public class EnvioServices {
 
         // Calcular la tarifa
         Tarifa tarifa = TarifaService.calcularTarifa(
-                cotizacionDTO.getDistanciaKm(),
-                pesoTotal,
-                volumenTotal,
-                prioridad,
-                cotizacionDTO.getServiciosAdicionales()
+            cotizacionDTO.getDistanciaKm(),
+            pesoTotal,
+            volumenTotal,
+            prioridad,
+            cotizacionDTO.getServiciosAdicionales()
         );
 
         // Obtener el costo total
@@ -163,6 +163,7 @@ public class EnvioServices {
         }
 
         CotizacionDTO cotizacionCompleta = CotizarEnvio(cotizacionDTO);
+        TipoPrioridad prioridad = PrioridadConverter.convertir(cotizacionDTO.getPrioridad());
 
         int idEnvio = EnvioIdGenerator.generarIdEnvio();
         List<Package> paquetes = PackageAdapter.adaptarLista(cotizacionDTO.getPaquetes());
@@ -175,15 +176,14 @@ public class EnvioServices {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaCreacion);
-        int minutosDemora = (int) Math.round(cotizacionDTO.getTiempoDemora());
-        calendar.add(Calendar.MINUTE, minutosDemora);
+        calendar.add(Calendar.MINUTE, (int) Math.round(cotizacionDTO.getTiempoDemora()));
         Date fechaEstimada = calendar.getTime();
 
         EnvioBuilder builder = new EnvioBuilder(
-                idEnvio,
-                "Origen-Destino",
-                new ArrayList<>(paquetes),
-                TipoEstado.SOLICITADO
+            idEnvio,
+            "Origen-Destino",
+            new ArrayList<>(paquetes),
+            TipoEstado.SOLICITADO
         );
 
         if (cotizacionDTO.getDireccionOrigen() != null && cotizacionDTO.getDireccionDestino() != null) {
@@ -191,8 +191,12 @@ public class EnvioServices {
         }
 
         builder.withCosto(cotizacionCompleta.getCostoCalculado())
-                .withfechaCreacion(fechaCreacion)
-                .withfechaEstimada(fechaEstimada);
+               .withfechaCreacion(fechaCreacion)
+               .withfechaEstimada(fechaEstimada)
+               .withPrioridad(prioridad)
+               .withServiciosAdicionales(cotizacionDTO.getServiciosAdicionales())
+               .withDistancia(cotizacionDTO.getDistanciaKm())
+               .withTiempoDemora((int) cotizacionDTO.getTiempoDemora());
 
         Envio nuevoEnvio = new Envio(builder);
 
@@ -247,7 +251,5 @@ public class EnvioServices {
 
         return costoTotal;
     }
-
-
 
 }

@@ -37,10 +37,19 @@ public class GestionRepartidor {
                 r.setNumeroDocumento(updateUser.getNumeroDocumento());
                 r.setTipoDocumento(updateUser.getTipoDocumento());
                 r.setZonaCobertura(updateUser.getZonaCobertura());
+                r.setDisponible(updateUser.isDisponible());
                 return r;
             }
         }
         return null;
+    }
+
+    public Repartidor actualizarDisponibilidad(String id, boolean disponible){
+        Repartidor repartidor = getRepartidor(id);
+        if(repartidor != null){
+            repartidor.setDisponible(disponible);
+        }
+        return repartidor;
     }
 
     public boolean DeleteRepatidor(String Id){
