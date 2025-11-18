@@ -16,7 +16,6 @@ public class Envio {
 
     public Envio(EnvioBuilder builder){
         this.IdEnvio = builder.IdEnvio;
-        this.tipoDireccion = builder.tipoDireccion;
         this.listpaquete = builder.listpaquete;
         this.estado = builder.estado;
         this.Costo = builder.Costo;
@@ -79,4 +78,5 @@ public class Envio {
     public void setFechaEstimada(Date fechaEstimada) {
         this.fechaEstimada = fechaEstimada;
     }
+
 }

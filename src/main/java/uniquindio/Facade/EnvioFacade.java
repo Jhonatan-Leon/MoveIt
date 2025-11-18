@@ -1,19 +1,17 @@
 package uniquindio.Facade;
 
+import uniquindio.Errors.ControllException;
+import uniquindio.Model.Client;
+import uniquindio.Model.DTO.CotizacionDTO;
+import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.Envio;
 import uniquindio.Services.EnvioServices;
+import uniquindio.Services.UserServices;
+import uniquindio.Utils.LoginDTO;
 
 import java.util.List;
 
 public class EnvioFacade {
-    private static EnvioFacade instance;
-
-    public static EnvioFacade getInstance(){
-        if(instance == null){
-            instance = new EnvioFacade();
-        }
-        return instance;
-    }
 
     public static Envio getEnvio(int IdEnvio){
 
@@ -42,5 +40,17 @@ public class EnvioFacade {
 
     public static String obtenerMensajeRastreo (String id) {
         return EnvioServices.obtenerMensajeRastreo(id);
+    }
+
+    public static CotizacionDTO cotizarTarifa(CotizacionDTO cotizacionDTO) 
+            throws ControllException.CotizacionInvalid, ControllException.TarifaError {
+        return EnvioServices.CotizarEnvio(cotizacionDTO);
+    }
+
+    public static Envio CrearEnvio(CotizacionDTO cotizacionDTO, UserLoginDTO client) 
+            throws ControllException.UserNotFound, ControllException.EnvioCreate, 
+                   ControllException.CotizacionInvalid, ControllException.TarifaError {
+        Client user = UserServices.getUserById(Integer.parseInt(client.getId()));
+        return EnvioServices.CrearSolicitudEnvio(cotizacionDTO, user);
     }
 }
