@@ -7,16 +7,16 @@ import uniquindio.Model.DTO.UserPostLoginDTO;
 
 public class Sesion {
 
-    private static ClientSesionDTO usuarioActual;
+    private static UserPostLoginDTO usuarioActual;
 
     private Sesion() {
     }
 
-    public static void iniciar(ClientSesionDTO usuario) {
+    public static void iniciar(UserPostLoginDTO usuario) {
         usuarioActual = usuario;
     }
 
-    public static ClientSesionDTO getUsuarioActual() {
+    public static UserPostLoginDTO getUsuarioActual() {
         return usuarioActual;
     }
 

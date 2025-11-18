@@ -12,7 +12,7 @@ public class Envio {
     private TipoEstado estado;
     private double Costo;
     private Date fechaCreacion;
-    private Date fechaEstimada;
+    private Date fechaEstimada; 
 
     public Envio(EnvioBuilder builder){
         this.IdEnvio = builder.IdEnvio;

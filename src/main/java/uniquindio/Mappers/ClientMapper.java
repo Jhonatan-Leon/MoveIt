@@ -5,6 +5,7 @@ import uniquindio.Facade.UserFacade;
 import uniquindio.Model.Client;
 import uniquindio.Model.DTO.ClientEnvioDTO;
 import uniquindio.Model.DTO.ClientSesionDTO;
+import uniquindio.Model.DTO.UserPostLoginDTO;
 
 public class ClientMapper {
 
@@ -28,7 +29,7 @@ public class ClientMapper {
         return new ClientEnvioDTO(user.getListEnvio());
     }
 
-    public static Client sesionToEntity (ClientSesionDTO user) throws ControllException.UserNotFound {
+    public static Client sesionToEntity (UserPostLoginDTO user) throws ControllException.UserNotFound {
         if (user == null) return null;
         else {
             Client client = UserFacade.getInstance().getUser(user.getEmail());
