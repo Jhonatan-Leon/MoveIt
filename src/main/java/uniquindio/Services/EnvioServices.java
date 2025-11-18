@@ -113,41 +113,41 @@ public class EnvioServices {
 
         // PATRÓN: Adapter - Convierte String a TipoPrioridad
         TipoPrioridad prioridad = PrioridadConverter.convertir(cotizacionDTO.getPrioridad());
-        
+
         // PATRÓN: Adapter - Convierte PaqueteDTO a Package
         List<Package> paquetes = PackageAdapter.adaptarLista(cotizacionDTO.getPaquetes());
-        
+
         // Calcular peso y volumen total
         double pesoTotal = TarifaService.calcularPesoTotal(paquetes);
         double volumenTotal = TarifaService.calcularVolumenTotal(paquetes);
-        
+
         if (pesoTotal <= 0) {
             throw new ControllException.CotizacionInvalid("El peso total debe ser mayor a 0");
         }
-        
+
         // Calcular la tarifa
         Tarifa tarifa = TarifaService.calcularTarifa(
-            cotizacionDTO.getDistanciaKm(),
-            pesoTotal,
-            volumenTotal,
-            prioridad,
-            cotizacionDTO.getServiciosAdicionales()
+                cotizacionDTO.getDistanciaKm(),
+                pesoTotal,
+                volumenTotal,
+                prioridad,
+                cotizacionDTO.getServiciosAdicionales()
         );
-        
+
         // Obtener el costo total
         double costoTotal = TarifaService.obtenerCostoTotal(tarifa);
-        
+
         if (costoTotal <= 0) {
             throw new ControllException.TarifaError("Error al calcular el costo de la tarifa");
         }
-        
+
         // Asignar el costo calculado al DTO
         cotizacionDTO.setCostoCalculado(costoTotal);
-        
+
         return cotizacionDTO;
     }
 
-    public static Envio CrearSolicitudEnvio(CotizacionDTO cotizacionDTO, Client cliente) 
+    public static Envio CrearSolicitudEnvio(CotizacionDTO cotizacionDTO, Client cliente)
             throws ControllException.EnvioCreate, ControllException.CotizacionInvalid, ControllException.TarifaError {
         if (cotizacionDTO == null) {
             throw new ControllException.EnvioCreate("La cotización no puede ser nula");
@@ -172,29 +172,30 @@ public class EnvioServices {
         }
 
         Date fechaCreacion = new Date();
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaCreacion);
-        calendar.add(Calendar.MINUTE, cotizacionDTO.getTiempoDemora());
+        int minutosDemora = (int) Math.round(cotizacionDTO.getTiempoDemora());
+        calendar.add(Calendar.MINUTE, minutosDemora);
         Date fechaEstimada = calendar.getTime();
 
         EnvioBuilder builder = new EnvioBuilder(
-            idEnvio,
-            "Origen-Destino",
-            new ArrayList<>(paquetes),
-            TipoEstado.SOLICITADO
+                idEnvio,
+                "Origen-Destino",
+                new ArrayList<>(paquetes),
+                TipoEstado.SOLICITADO
         );
 
         if (cotizacionDTO.getDireccionOrigen() != null && cotizacionDTO.getDireccionDestino() != null) {
             builder.withDirecciones(cotizacionDTO.getDireccionOrigen(), cotizacionDTO.getDireccionDestino());
         }
-        
+
         builder.withCosto(cotizacionCompleta.getCostoCalculado())
-               .withfechaCreacion(fechaCreacion)
-               .withfechaEstimada(fechaEstimada);
-        
+                .withfechaCreacion(fechaCreacion)
+                .withfechaEstimada(fechaEstimada);
+
         Envio nuevoEnvio = new Envio(builder);
-        
+
         if (cliente.getListEnvio() == null) {
             cliente.setListEnvio(new ArrayList<>());
         }
@@ -203,11 +204,11 @@ public class EnvioServices {
         if (!gestion.AddEnvio(nuevoEnvio)) {
             throw new ControllException.EnvioCreate("Error al agregar el envío a la gestión");
         }
-        
+
         return nuevoEnvio;
     }
 
-    public static double calcularCostoEnvio(Envio envio, double distanciaKm, String prioridad, List<String> serviciosAdicionales) 
+    public static double calcularCostoEnvio(Envio envio, double distanciaKm, String prioridad, List<String> serviciosAdicionales)
             throws ControllException.TarifaError {
         if (envio == null) {
             throw new ControllException.TarifaError("El envío no puede ser nulo");
@@ -231,11 +232,11 @@ public class EnvioServices {
         }
 
         Tarifa tarifa = TarifaService.calcularTarifa(
-            distanciaKm,
-            pesoTotal,
-            volumenTotal,
-            tipoPrioridad,
-            serviciosAdicionales
+                distanciaKm,
+                pesoTotal,
+                volumenTotal,
+                tipoPrioridad,
+                serviciosAdicionales
         );
 
         double costoTotal = TarifaService.obtenerCostoTotal(tarifa);

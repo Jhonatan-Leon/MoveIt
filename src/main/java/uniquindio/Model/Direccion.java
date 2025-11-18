@@ -58,5 +58,11 @@ public class Direccion {
     public void setCoordenadas(String coordenadas) {
         Coordenadas = coordenadas;
     }
+
+    @Override
+    public String toString() {
+        return Alias + " - " + Calle + " (" + Ciudad + ")";
+    }
+
 }
 

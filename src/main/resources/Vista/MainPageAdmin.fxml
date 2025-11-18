@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.Controller.MainPageClientController">
+   <children>
+      <ImageView fitHeight="820.0" fitWidth="1400.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/FondosFX/MainPageAdmin.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1137.0" layoutY="32.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="46.0" prefWidth="217.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Cerrar Sesion" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="22.0" fitWidth="26.0" layoutX="1314.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/ElementosApoyo/LogoCerrarSesion.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="573.0" layoutY="309.0" mnemonicParsing="false" onAction="#irGestionarClientes" prefHeight="63.0" prefWidth="347.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Gestionar clientes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="959.0" layoutY="309.0" mnemonicParsing="false" onAction="#irGestionarRepartidores" prefHeight="63.0" prefWidth="347.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Gestionar repartidores" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="573.0" layoutY="426.0" mnemonicParsing="false" onAction="#irAsignarEnvios" prefHeight="63.0" prefWidth="347.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Asignar envios" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="959.0" layoutY="425.0" mnemonicParsing="false" onAction="#irPanelMetricas" prefHeight="63.0" prefWidth="347.0" style="-fx-background-radius: 100px; -fx-background-color: #020d26;" text="Panel de metricas" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
