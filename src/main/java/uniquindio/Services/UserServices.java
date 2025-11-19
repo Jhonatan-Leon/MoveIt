@@ -5,6 +5,7 @@ import uniquindio.Model.*;
 import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserLoginDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
+import uniquindio.Model.Gestion.GestionAdmin;
 import uniquindio.Model.Gestion.GestionRepartidor;
 import uniquindio.Model.Gestion.GestionUser;
 
@@ -129,16 +130,15 @@ public class UserServices {
                 throw new ControllException.UserNotFound("Contraseña incorrecta");
             }
 
-            // 2. Buscar en Repartidores
-            Repartidor repartidor = gestionRepartidor.getRepartidor(userLoginDTO.getId());
-            if (repartidor != null) {
-                if (repartidor.getPassword().equals(userLoginDTO.getPassword())) {
-                    return repartidor;
+            // 2. Buscar en Admin
+            Admin admin = GestionAdmin.getInstance().getAdminByMail(userLoginDTO.getId());
+            if (admin != null) {
+                if (admin.getPassword().equals(userLoginDTO.getPassword())) {
+                    return admin;
                 }
                 throw new ControllException.UserNotFound("Contraseña incorrecta");
             }
 
-            // 3. Buscar en Admin PENDIENTE
 
             // Si no se encontró en ninguna lista:
             throw new ControllException.UserNotFound("Usuario no encontrado");

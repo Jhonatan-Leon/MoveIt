@@ -1,6 +1,7 @@
 package uniquindio.Facade;
 
 import uniquindio.Errors.ControllException;
+import uniquindio.Model.Admin; // Importar la clase Admin
 import uniquindio.Model.Client;
 import uniquindio.Model.DTO.AdminMetricasDTO;
 import uniquindio.Model.DTO.MetricDataPointDTO;
@@ -60,6 +61,34 @@ public class AdminFacade {
     public static boolean deleteClient(int id) throws ControllException.UserDelete {
         return  AdminServices.eliminarCliente(id);
     }
+
+    // -------------------- Métodos de Gestión de Administradores --------------------
+
+    public static List<Admin> listarAdministradores() {
+        return AdminServices.listarAdministradores();
+    }
+
+    public static Admin getAdminPorId(String id) throws ControllException.UserNotFound {
+        return AdminServices.obtenerAdministradorPorId(id);
+    }
+
+    public static Admin getAdminPorEmail(String email) throws ControllException.UserNotFound {
+        return AdminServices.obtenerAdministradorPorEmail(email);
+    }
+
+    public static Admin createAdmin(Admin admin) throws ControllException.UserCreate {
+        return AdminServices.crearAdministrador(admin);
+    }
+
+    public static Admin updateAdmin(Admin admin) throws ControllException.UserUpdate {
+        return AdminServices.actualizarAdministrador(admin);
+    }
+
+    public static boolean deleteAdmin(String id) throws ControllException.UserDelete {
+        return AdminServices.eliminarAdministrador(id);
+    }
+
+    // -------------------- Métodos de Envíos y Métricas --------------------
 
     public static List<Envio> listarEnvios(){
         return AdminServices.listarEnvios();

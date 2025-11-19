@@ -208,4 +208,8 @@ public class GestionRepartidorAdminController {
         return txtNumeroDocumento.getText();
     }
 
+    public void volver () {
+        Navegacion.volver();
+    }
+
 }

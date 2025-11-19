@@ -243,6 +243,5 @@ public class GestionarClientesAdminController {
         choiceMetodoPago.setValue(null);
         tableClientes.getSelectionModel().clearSelection();
     }
-
 }
 

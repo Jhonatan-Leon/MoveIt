@@ -1,12 +1,10 @@
 package uniquindio.Services;
 
 import uniquindio.Errors.ControllException;
-import uniquindio.Model.Client;
+import uniquindio.Model.*;
 import uniquindio.Model.DTO.AdminMetricasDTO;
 import uniquindio.Model.DTO.MetricDataPointDTO;
-import uniquindio.Model.Envio;
-import uniquindio.Model.Repartidor;
-import uniquindio.Model.TipoEstado;
+import uniquindio.Model.Gestion.GestionAdmin;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ import static uniquindio.Helper.PersistirEnvio.persistirEnvio;
 
 public class AdminServices {
 
+    private static final GestionAdmin gestion = GestionAdmin.getInstance();
     private static final String FORMATO_PERIODO = "yyyy-MM";
 
     public static List<Client> listarClientes() throws ControllException.UserNotFound {
@@ -201,6 +200,51 @@ public class AdminServices {
                 .stream()
                 .map(entry -> new MetricDataPointDTO(entry.getKey(), entry.getValue().doubleValue()))
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    //  Gestión de Administradores
+
+    public static List<Admin> listarAdministradores() {
+        return gestion.getAdmins();
+    }
+
+    public static Admin obtenerAdministradorPorId(String id) throws ControllException.UserNotFound {
+        Admin admin = gestion.getAdminById(id);
+        if (admin == null) {
+            throw new ControllException.UserNotFound("Administrador no encontrado con ID: " + id);
+        }
+        return admin;
+    }
+
+    public static Admin obtenerAdministradorPorEmail(String email) throws ControllException.UserNotFound {
+        Admin admin = gestion.getAdmin(email);
+        if (admin == null) {
+            throw new ControllException.UserNotFound("Administrador no encontrado con Email: " + email);
+        }
+        return admin;
+    }
+
+    public static Admin crearAdministrador(Admin admin) throws ControllException.UserCreate {
+        if (gestion.getAdmin(admin.getEmail()) != null) {
+            throw new ControllException.UserCreate("Ya existe un administrador con el email: " + admin.getEmail());
+        }
+        return gestion.addAdmin(admin);
+    }
+
+
+    public static Admin actualizarAdministrador(Admin admin) throws ControllException.UserUpdate {
+        Admin adminActualizado = gestion.updateAdmin(admin.getId(), admin);
+        if (adminActualizado == null) {
+            throw new ControllException.UserUpdate("No se pudo actualizar el administrador, ID no encontrado: " + admin.getId());
+        }
+        return adminActualizado;
+    }
+
+    public static boolean eliminarAdministrador(String id) throws ControllException.UserDelete {
+        if (!gestion.deleteAdmin(id)) {
+            throw new ControllException.UserDelete("No se pudo eliminar el administrador con ID: " + id);
+        }
+        return true;
     }
 
 }

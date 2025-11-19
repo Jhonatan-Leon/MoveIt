@@ -10,13 +10,13 @@ import javafx.scene.text.Text;
 import uniquindio.Errors.ControllException;
 import uniquindio.Facade.UserFacade;
 import uniquindio.Helper.Sesion;
+import uniquindio.Mappers.AdminMapper;
 import uniquindio.Mappers.ClientMapper;
-import uniquindio.Mappers.RepartidorMapper;
+import uniquindio.Model.Admin;
 import uniquindio.Model.Client;
+import uniquindio.Model.DTO.AdminSesionDTO;
 import uniquindio.Model.DTO.ClientSesionDTO;
-import uniquindio.Model.DTO.RepartidorSesionDTO;
 import uniquindio.Model.DTO.UserLoginDTO;
-import uniquindio.Model.Repartidor;
 import uniquindio.Model.User;
 
 
@@ -47,13 +47,11 @@ public class LoginController {
                 Sesion.iniciar(clientDTO);
                 Navegacion.cambiarVista("/Vista/MainPageClient.fxml");
             }
-            if (usuario instanceof Repartidor repartidor) {
-                RepartidorSesionDTO repartidorDTO = RepartidorMapper.toDTO(repartidor);
-                Sesion.iniciar(repartidorDTO);
-                Navegacion.cambiarVista("/Vista/Repartidor/MainPageRepartidor.fxml");
+            if (usuario instanceof Admin admin) {
+                AdminSesionDTO adminDTO = AdminMapper.toDTO(admin);
+                Sesion.iniciar(adminDTO);
+                Navegacion.cambiarVista("/Vista/MainPageAdmin.fxml");
             }
-            // FALTA AÑADIR LO DE ADMINS
-
         } catch (ControllException.UserNotFound e) {
             labelError.setVisible(true);
             labelError.setText(e.getMessage());

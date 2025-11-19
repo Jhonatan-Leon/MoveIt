@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "ADM001",
+    "NombreCompleto": "Carlos Sanchez",
+    "email": "admin@uniquindio.edu.co",
+    "password": "admin123",
+    "telefono": "3001234567",
+    "tipoDocumento": "CEDULA_CIUDADANIA",
+    "NumeroDocumento": "1094123456",
+    "estado": true
+  },
+  {
+    "Id": "ADM002",
+    "NombreCompleto": "Laura Martinez",
+    "email": "laura.martinez@uniquindio.edu.co",
+    "password": "hashed_password_admin_002",
+    "telefono": "3019876543",
+    "tipoDocumento": "TARJETA_IDENTIDAD",
+    "NumeroDocumento": "1004654321",
+    "estado": true
+  },
+  {
+    "Id": "ADM003",
+    "NombreCompleto": "Andres Felipe Ochoa",
+    "email": "andres.ochoa@uniquindio.edu.co",
+    "password": "hashed_password_admin_003",
+    "telefono": "3205558899",
+    "tipoDocumento": "PASAPORTE",
+    "NumeroDocumento": "A99887766",
+    "estado": false
+  }
+]

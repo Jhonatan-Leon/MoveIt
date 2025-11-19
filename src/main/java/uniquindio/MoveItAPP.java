@@ -14,7 +14,7 @@ public class MoveItAPP extends Application {
     public void start(Stage primaryStage) throws Exception {
         Navegacion.reiniciarHistorial();
         Navegacion.setStagePrincipal(primaryStage);
-        Parent root = FXMLLoader.load(getClass().getResource("/Vista/MainPageAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Vista/Login.fxml"));
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/ElementosApoyo/MoveItLogo.png")));
 
         Scene scene = new Scene(root);
