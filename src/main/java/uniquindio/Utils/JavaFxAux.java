@@ -3,7 +3,6 @@ package uniquindio.Utils;
 import uniquindio.Errors.ControllException;
 import uniquindio.Mappers.ClientMapper;
 import uniquindio.Model.Client;
-import uniquindio.Model.DTO.ClientSesionDTO;
 import uniquindio.Model.DTO.UserPostLoginDTO;
 import uniquindio.Model.Direccion;
 import uniquindio.Model.Envio;

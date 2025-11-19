@@ -23,6 +23,20 @@
           "Calle": "Avenida del Mar #12-45",
           "Ciudad": "Santa Marta",
           "Coordenadas": "11.240789, -74.211113"
+        },
+        {
+          "IdDireccion": "DIR-003",
+          "Alias": "Casa Armenia",
+          "Calle": "Calle 23 #10-15",
+          "Ciudad": "Armenia",
+          "Coordenadas": "4.533889, -75.681111"
+        },
+        {
+          "IdDireccion": "DIR-004",
+          "Alias": "Apartamento Centro Armenia",
+          "Calle": "Carrera 19 #5-30",
+          "Ciudad": "Armenia",
+          "Coordenadas": "4.539167, -75.678611"
         }
       ],
       "listEnvio": [
