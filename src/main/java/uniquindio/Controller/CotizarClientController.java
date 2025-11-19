@@ -145,7 +145,8 @@ public class CotizarClientController {
                 0
                 );
         CotizacionDTO coti = CotizacionController.cotizarTarifa(cotizacion);
-        txtCosto.setText(String.valueOf(coti.getCostoCalculado()));
+        double cotiotro = (double) Math.round(coti.getCostoCalculado());
+        txtCosto.setText(String.valueOf(cotiotro));
     }
 
     public List<Direccion> getDirecciones () throws ControllException.UserNotFound {
@@ -224,7 +225,8 @@ public class CotizarClientController {
             int nuevoId = GestionEnvios.getInstance().generarIdEnvio();
             String tipoDireccion = chBxDireccionFin.getValue().toString();
             List<PaqueteDTO> listaPaquetesDTO = getPaquetes();
-            double costoTotal = Double.parseDouble(txtCosto.getText());
+            double valor = Double.parseDouble(txtCosto.getText());
+            double costoTotal = Math.round(valor);
 
             ArrayList<uniquindio.Model.Package> listaPaquetes = new ArrayList<>();
             for (PaqueteDTO dto : listaPaquetesDTO) {
